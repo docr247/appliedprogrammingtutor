@@ -300,7 +300,8 @@
               ],
               "expected": "zero"
             }
-          ]
+          ],
+          "solution_code": "def classify_number(n):\n    if n > 0:\n        return 'positive'\n    if n < 0:\n        return 'negative'\n    return 'zero'"
         },
         {
           "id": "CLO1-C2",
@@ -332,7 +333,8 @@
               ],
               "expected": "even"
             }
-          ]
+          ],
+          "solution_code": "def is_even(n):\n    return 'even' if n % 2 == 0 else 'odd'"
         },
         {
           "id": "CLO1-C3",
@@ -367,7 +369,8 @@
               ],
               "expected": -1
             }
-          ]
+          ],
+          "solution_code": "def max_of_two(a, b):\n    return a if a >= b else b"
         },
         {
           "id": "CLO1-C4",
@@ -399,7 +402,8 @@
               ],
               "expected": 0
             }
-          ]
+          ],
+          "solution_code": "def abs_manual(n):\n    return -n if n < 0 else n"
         },
         {
           "id": "CLO1-C5",
@@ -431,7 +435,8 @@
               ],
               "expected": 0
             }
-          ]
+          ],
+          "solution_code": "def sign_code(n):\n    if n > 0:\n        return 1\n    if n < 0:\n        return -1\n    return 0"
         },
         {
           "id": "CLO1-C6",
@@ -463,7 +468,8 @@
               ],
               "expected": "fail"
             }
-          ]
+          ],
+          "solution_code": "def grade_band(score):\n    return 'pass' if score >= 50 else 'fail'"
         },
         {
           "id": "CLO1-C7",
@@ -493,7 +499,8 @@
               ],
               "expected": -2
             }
-          ]
+          ],
+          "solution_code": "def min_of_three(a, b, c):\n    smallest = a\n    if b < smallest:\n        smallest = b\n    if c < smallest:\n        smallest = c\n    return smallest"
         },
         {
           "id": "CLO1-C8",
@@ -525,7 +532,8 @@
               ],
               "expected": false
             }
-          ]
+          ],
+          "solution_code": "def is_positive(n):\n    return n > 0"
         },
         {
           "id": "CLO1-C9",
@@ -559,7 +567,8 @@
                 "x"
               ]
             }
-          ]
+          ],
+          "solution_code": "def swap_pair(a, b):\n    return [b, a]"
         },
         {
           "id": "CLO1-C10",
@@ -597,7 +606,8 @@
               ],
               "expected": false
             }
-          ]
+          ],
+          "solution_code": "def between(x, low, high):\n    return low <= x <= high"
         }
       ]
     },
@@ -940,7 +950,8 @@
               ],
               "expected": 0
             }
-          ]
+          ],
+          "solution_code": "def compute(a, b):\n    return (a + b) * (a - b)"
         },
         {
           "id": "CLO2-C2",
@@ -974,7 +985,8 @@
                 14
               ]
             }
-          ]
+          ],
+          "solution_code": "def rect_metrics(w, h):\n    area = w * h\n    perimeter = 2 * (w + h)\n    return [area, perimeter]"
         },
         {
           "id": "CLO2-C3",
@@ -1006,7 +1018,8 @@
               ],
               "expected": 77.0
             }
-          ]
+          ],
+          "solution_code": "def c_to_f(c):\n    return (c * 9 / 5) + 32"
         },
         {
           "id": "CLO2-C4",
@@ -1036,7 +1049,8 @@
               ],
               "expected": 1.6666666666666667
             }
-          ]
+          ],
+          "solution_code": "def average3(a, b, c):\n    return (a + b + c) / 3"
         },
         {
           "id": "CLO2-C5",
@@ -1064,7 +1078,8 @@
               ],
               "expected": 24
             }
-          ]
+          ],
+          "solution_code": "def square_then_add(x, y):\n    return x * x + y"
         },
         {
           "id": "CLO2-C6",
@@ -1096,7 +1111,8 @@
                 12.56
               ]
             }
-          ]
+          ],
+          "solution_code": "def circle_metrics(r):\n    pi = 3.14\n    return [pi * r * r, 2 * pi * r]"
         },
         {
           "id": "CLO2-C7",
@@ -1128,7 +1144,8 @@
               ],
               "expected": 1
             }
-          ]
+          ],
+          "solution_code": "def to_minutes(seconds):\n    return seconds // 60"
         },
         {
           "id": "CLO2-C8",
@@ -1156,7 +1173,8 @@
               ],
               "expected": false
             }
-          ]
+          ],
+          "solution_code": "def is_multiple(a, b):\n    return a % b == 0"
         },
         {
           "id": "CLO2-C9",
@@ -1186,7 +1204,8 @@
               ],
               "expected": 60.0
             }
-          ]
+          ],
+          "solution_code": "def simple_interest(p, r, t):\n    return (p * r * t) / 100"
         },
         {
           "id": "CLO2-C10",
@@ -1214,7 +1233,8 @@
               ],
               "expected": 0
             }
-          ]
+          ],
+          "solution_code": "def remainder(a, b):\n    return a % b"
         }
       ]
     },
@@ -1585,7 +1605,8 @@
               ],
               "expected": 6
             }
-          ]
+          ],
+          "solution_code": "def factorial(n):\n    result = 1\n    for value in range(1, n + 1):\n        result *= value\n    return result"
         },
         {
           "id": "CLO3-C2",
@@ -1617,7 +1638,8 @@
               ],
               "expected": 28
             }
-          ]
+          ],
+          "solution_code": "def sum_to_n(n):\n    total = 0\n    for value in range(1, n + 1):\n        total += value\n    return total"
         },
         {
           "id": "CLO3-C3",
@@ -1649,7 +1671,8 @@
               ],
               "expected": 0
             }
-          ]
+          ],
+          "solution_code": "def count_vowels(text):\n    vowels = set('aeiou')\n    count = 0\n    for char in text.lower():\n        if char in vowels:\n            count += 1\n    return count"
         },
         {
           "id": "CLO3-C4",
@@ -1683,7 +1706,8 @@
               ],
               "expected": -1
             }
-          ]
+          ],
+          "solution_code": "def largest(items):\n    current = items[0]\n    for value in items:\n        if value > current:\n            current = value\n    return current"
         },
         {
           "id": "CLO3-C5",
@@ -1709,7 +1733,8 @@
               ],
               "expected": "level"
             }
-          ]
+          ],
+          "solution_code": "def reverse_text(text):\n    return text[::-1]"
         },
         {
           "id": "CLO3-C6",
@@ -1744,7 +1769,8 @@
               ],
               "expected": 3
             }
-          ]
+          ],
+          "solution_code": "def count_evens(items):\n    count = 0\n    for value in items:\n        if value % 2 == 0:\n            count += 1\n    return count"
         },
         {
           "id": "CLO3-C7",
@@ -1772,7 +1798,8 @@
               ],
               "expected": 1
             }
-          ]
+          ],
+          "solution_code": "def power_loop(base, exp):\n    result = 1\n    for _ in range(exp):\n        result *= base\n    return result"
         },
         {
           "id": "CLO3-C8",
@@ -1806,7 +1833,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def first_non_negative(items):\n    for value in items:\n        if value >= 0:\n            return value\n    return None"
         },
         {
           "id": "CLO3-C9",
@@ -1834,7 +1862,8 @@
               ],
               "expected": 0
             }
-          ]
+          ],
+          "solution_code": "def count_char(text, ch):\n    count = 0\n    for char in text:\n        if char == ch:\n            count += 1\n    return count"
         },
         {
           "id": "CLO3-C10",
@@ -1860,7 +1889,8 @@
               ],
               "expected": false
             }
-          ]
+          ],
+          "solution_code": "def is_palindrome(text):\n    return text == text[::-1]"
         }
       ]
     },
@@ -2187,7 +2217,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return None"
         },
         {
           "id": "CLO4-C2",
@@ -2219,7 +2250,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def parse_int(text):\n    try:\n        return int(text)\n    except ValueError:\n        return None"
         },
         {
           "id": "CLO4-C3",
@@ -2247,7 +2279,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def ratio(a, b):\n    if b == 0:\n        return None\n    return a / b"
         },
         {
           "id": "CLO4-C4",
@@ -2273,7 +2306,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def first_line(path):\n    try:\n        with open(path, 'r', encoding='utf-8') as file:\n            return file.readline().rstrip('\\n')\n    except Exception:\n        return None"
         },
         {
           "id": "CLO4-C5",
@@ -2309,7 +2343,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def item_at(items, idx):\n    try:\n        return items[idx]\n    except IndexError:\n        return None"
         },
         {
           "id": "CLO4-C6",
@@ -2335,7 +2370,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def parse_float(text):\n    try:\n        return float(text)\n    except ValueError:\n        return None"
         },
         {
           "id": "CLO4-C7",
@@ -2365,7 +2401,8 @@
               ],
               "expected": -1
             }
-          ]
+          ],
+          "solution_code": "def divide_or_default(a, b, default):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return default"
         },
         {
           "id": "CLO4-C8",
@@ -2391,7 +2428,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def file_size(path):\n    try:\n        with open(path, 'rb') as file:\n            return len(file.read())\n    except FileNotFoundError:\n        return None"
         },
         {
           "id": "CLO4-C9",
@@ -2423,7 +2461,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def safe_get(mapping, key):\n    return mapping.get(key)"
         },
         {
           "id": "CLO4-C10",
@@ -2449,7 +2488,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def reciprocal(n):\n    if n == 0:\n        return None\n    return 1 / n"
         }
       ]
     },
@@ -2746,7 +2786,8 @@
               ],
               "expected": 6.0
             }
-          ]
+          ],
+          "solution_code": "def lerp(x0, y0, x1, y1, x):\n    ratio = (x - x0) / (x1 - x0)\n    return y0 + ratio * (y1 - y0)"
         },
         {
           "id": "CLO5-C2",
@@ -2774,7 +2815,8 @@
               ],
               "expected": 5.0
             }
-          ]
+          ],
+          "solution_code": "def midpoint(y0, y1):\n    return (y0 + y1) / 2"
         },
         {
           "id": "CLO5-C3",
@@ -2806,7 +2848,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def slope(x0, y0, x1, y1):\n    if x1 == x0:\n        return None\n    return (y1 - y0) / (x1 - x0)"
         },
         {
           "id": "CLO5-C4",
@@ -2836,7 +2879,8 @@
               ],
               "expected": -1
             }
-          ]
+          ],
+          "solution_code": "def linear_predict(m, c, x):\n    return m * x + c"
         },
         {
           "id": "CLO5-C5",
@@ -2874,7 +2918,8 @@
               ],
               "expected": 10
             }
-          ]
+          ],
+          "solution_code": "def clamp_reading(v, low, high):\n    if v < low:\n        return low\n    if v > high:\n        return high\n    return v"
         },
         {
           "id": "CLO5-C6",
@@ -2902,7 +2947,8 @@
               ],
               "expected": 8
             }
-          ]
+          ],
+          "solution_code": "def distance_1d(x0, x1):\n    return abs(x1 - x0)"
         },
         {
           "id": "CLO5-C7",
@@ -2930,7 +2976,8 @@
               ],
               "expected": 4
             }
-          ]
+          ],
+          "solution_code": "def scale_reading(v, factor):\n    return v * factor"
         },
         {
           "id": "CLO5-C8",
@@ -2962,7 +3009,8 @@
               ],
               "expected": 10.0
             }
-          ]
+          ],
+          "solution_code": "def avg_sensor(a, b, c, d):\n    return (a + b + c + d) / 4"
         },
         {
           "id": "CLO5-C9",
@@ -2990,7 +3038,8 @@
               ],
               "expected": 5
             }
-          ]
+          ],
+          "solution_code": "def add_offset(value, offset):\n    return value + offset"
         },
         {
           "id": "CLO5-C10",
@@ -3020,7 +3069,8 @@
               ],
               "expected": null
             }
-          ]
+          ],
+          "solution_code": "def normalize(v, low, high):\n    if high == low:\n        return None\n    return (v - low) / (high - low)"
         }
       ]
     }

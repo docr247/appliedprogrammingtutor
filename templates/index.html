@@ -58,9 +58,28 @@
             </button>
 
             <div id="code-feedback" class="feedback"></div>
+            <pre
+              id="code-solution"
+              class="code-solution"
+              style="display: none"
+            ></pre>
           </div>
         </section>
       </main>
+    </div>
+
+    <div id="answer-modal" class="modal-overlay" style="display: none">
+      <div class="modal-card">
+        <h3>Need the answer?</h3>
+        <p>
+          You have attempted this coding exercise 5 times. Do you want to see
+          the solution now?
+        </p>
+        <div class="modal-actions">
+          <button id="modal-yes" class="primary">YES</button>
+          <button id="modal-no" class="secondary">NO</button>
+        </div>
+      </div>
     </div>
 
     <script src="{{ url_for('static', filename='app.js') }}"></script>

@@ -6,6 +6,7 @@ const state = {
   activeAssessmentTab: null,
   mcqProgressByClo: {},
   codeProgressByClo: {},
+  revealedSolutions: {},
 };
 
 const cloListEl = document.getElementById("clo-list");
@@ -23,6 +24,10 @@ const exercisePromptEl = document.getElementById("exercise-prompt");
 const codeEditorEl = document.getElementById("code-editor");
 const codeFeedbackEl = document.getElementById("code-feedback");
 const nextCodeEl = document.getElementById("next-code");
+const codeSolutionEl = document.getElementById("code-solution");
+const answerModalEl = document.getElementById("answer-modal");
+const modalYesEl = document.getElementById("modal-yes");
+const modalNoEl = document.getElementById("modal-no");
 
 const tabMcqEl = document.getElementById("tab-mcq");
 const tabCodeEl = document.getElementById("tab-code");
@@ -425,6 +430,8 @@ function renderExercises() {
     codeFeedbackEl.textContent =
       "Please check back later for more practice tasks.";
     nextCodeEl.style.display = "none";
+    codeSolutionEl.style.display = "none";
+    codeSolutionEl.textContent = "";
     return;
   }
 
@@ -448,6 +455,46 @@ function renderExercises() {
   codeFeedbackEl.textContent =
     "Submit your code to receive guided feedback and hints.";
   nextCodeEl.style.display = "none";
+  codeSolutionEl.style.display = "none";
+  codeSolutionEl.textContent = "";
+}
+
+function showSolution(exercise) {
+  const solutionCode = exercise.solution_code;
+  if (!solutionCode) {
+    codeSolutionEl.style.display = "none";
+    codeSolutionEl.textContent = "";
+    return;
+  }
+
+  codeEditorEl.value = solutionCode;
+  codeSolutionEl.style.display = "block";
+  codeSolutionEl.textContent = `Suggested solution:\n\n${solutionCode}`;
+}
+
+function askToShowSolution() {
+  return new Promise((resolve) => {
+    answerModalEl.style.display = "flex";
+
+    const onYes = () => {
+      cleanup();
+      resolve(true);
+    };
+
+    const onNo = () => {
+      cleanup();
+      resolve(false);
+    };
+
+    const cleanup = () => {
+      answerModalEl.style.display = "none";
+      modalYesEl.removeEventListener("click", onYes);
+      modalNoEl.removeEventListener("click", onNo);
+    };
+
+    modalYesEl.addEventListener("click", onYes);
+    modalNoEl.addEventListener("click", onNo);
+  });
 }
 
 submitCodeEl.addEventListener("click", async () => {
@@ -485,9 +532,35 @@ submitCodeEl.addEventListener("click", async () => {
   if (success) {
     codeFeedbackEl.textContent = `${result.message} Attempts: ${result.attempts}.`;
     nextCodeEl.style.display = "inline-block";
+    codeSolutionEl.style.display = "none";
+    codeSolutionEl.textContent = "";
   } else {
     codeFeedbackEl.textContent = `${result.message} Hint: ${result.hint} (Attempt ${result.attempts})`;
     nextCodeEl.style.display = "none";
+
+    if (result.attempts >= 5) {
+      const alreadyRevealed = state.revealedSolutions[exercise.id] === true;
+      if (!alreadyRevealed) {
+        const wantsSolution = await askToShowSolution();
+        if (wantsSolution) {
+          state.revealedSolutions[exercise.id] = true;
+          showSolution(exercise);
+          nextCodeEl.style.display = "inline-block";
+        }
+      } else {
+        showSolution(exercise);
+        nextCodeEl.style.display = "inline-block";
+      }
+    }
+
+    if (result.attempts >= 5 && !state.revealedSolutions[exercise.id]) {
+      codeSolutionEl.style.display = "none";
+      codeSolutionEl.textContent = "";
+    }
+
+    if (result.attempts >= 5 && state.revealedSolutions[exercise.id]) {
+      codeFeedbackEl.textContent = `${result.message} Hint: ${result.hint} (Attempt ${result.attempts}) Solution loaded in the code editor.`;
+    }
   }
 });
 
