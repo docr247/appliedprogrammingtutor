@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import json
 import multiprocessing as mp
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -342,4 +343,7 @@ def assess_code() -> Any:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.getenv("PORT", "5000"))
+    host = os.getenv("HOST", "0.0.0.0")
+    debug = os.getenv("FLASK_DEBUG", "false").lower() == "true"
+    app.run(host=host, port=port, debug=debug)

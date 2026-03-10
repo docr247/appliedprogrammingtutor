@@ -28,6 +28,58 @@ cd /Users/ravisuppiah/Dropbox/AppliedProgrammingTutor
 
 Open: http://127.0.0.1:5000
 
+## Deploy to Render (Recommended)
+
+This repo is now deployment-ready for Render.
+
+### 1) Push code to GitHub
+
+Render deploys directly from your GitHub repository.
+
+### 2) Create a new Web Service on Render
+
+- In Render dashboard: **New +** -> **Web Service**
+- Connect this repo
+- Render can auto-detect settings from `render.yaml`
+
+If entering settings manually:
+
+- **Environment**: Python
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `gunicorn app:app --workers 2 --threads 4 --timeout 120`
+
+### 3) Environment variables
+
+Set in Render:
+
+- `FLASK_DEBUG=false`
+
+`PORT` is provided automatically by Render.
+
+### 4) Deploy
+
+Trigger deploy and wait for the service URL, for example:
+
+- `https://applied-programming-tutor.onrender.com`
+
+## Connect Your Cloudflare Domain
+
+After Render is live:
+
+1. In Render, add your custom domain (for example `tutor.yourdomain.com`).
+2. In Cloudflare DNS, create a `CNAME` record from `tutor` to your Render hostname.
+3. Keep SSL/TLS enabled in both Render and Cloudflare.
+
+## Future Updates Workflow
+
+For improvements:
+
+1. Make changes locally.
+2. Commit and push to `main`.
+3. Render auto-deploys the latest commit.
+
+This keeps deployment simple and repeatable.
+
 ## Customize with Your Material
 
 Edit `data/clo_content.json`:
