@@ -1,11 +1,11 @@
 const state = {
   data: null,
   selectedCloIndex: 0,
-  selectedExerciseIndex: 0,
   selectedVideoWeek: "all",
   sessionId: crypto.randomUUID(),
   activeAssessmentTab: null,
   mcqProgressByClo: {},
+  codeProgressByClo: {},
 };
 
 const cloListEl = document.getElementById("clo-list");
@@ -18,10 +18,11 @@ const videoWeekFilterEl = document.getElementById("video-week-filter");
 const videoCountEl = document.getElementById("video-count");
 const mcqContainerEl = document.getElementById("mcq-container");
 
-const exerciseSelectEl = document.getElementById("exercise-select");
+const codingTitleEl = document.getElementById("coding-title");
 const exercisePromptEl = document.getElementById("exercise-prompt");
 const codeEditorEl = document.getElementById("code-editor");
 const codeFeedbackEl = document.getElementById("code-feedback");
+const nextCodeEl = document.getElementById("next-code");
 
 const tabMcqEl = document.getElementById("tab-mcq");
 const tabCodeEl = document.getElementById("tab-code");
@@ -93,7 +94,6 @@ function renderCloButtons() {
     button.textContent = `${clo.id}: ${clo.title}`;
     button.onclick = () => {
       state.selectedCloIndex = index;
-      state.selectedExerciseIndex = 0;
       state.selectedVideoWeek = "all";
       renderAll();
     };
@@ -383,41 +383,86 @@ function renderMcq() {
   mcqContainerEl.appendChild(card);
 }
 
+function getCurrentCodeProgress() {
+  const clo = getSelectedClo();
+  if (!state.codeProgressByClo[clo.id]) {
+    state.codeProgressByClo[clo.id] = {
+      currentExerciseId: null,
+      usedExerciseIds: [],
+    };
+  }
+  return state.codeProgressByClo[clo.id];
+}
+
+function pickNextExerciseForClo(clo, progress) {
+  if (!clo.coding_exercises || clo.coding_exercises.length === 0) {
+    return null;
+  }
+
+  const remaining = clo.coding_exercises.filter(
+    (exercise) => !progress.usedExerciseIds.includes(exercise.id),
+  );
+
+  if (remaining.length === 0) {
+    progress.usedExerciseIds = [];
+    return clo.coding_exercises[
+      Math.floor(Math.random() * clo.coding_exercises.length)
+    ];
+  }
+
+  return remaining[Math.floor(Math.random() * remaining.length)];
+}
+
 function renderExercises() {
   const clo = getSelectedClo();
-  const exercises = clo.coding_exercises;
+  const exercises = clo.coding_exercises || [];
+  if (!exercises.length) {
+    codingTitleEl.textContent = "Coding Exercise";
+    exercisePromptEl.textContent =
+      "No coding exercises available for this CLO yet.";
+    codeEditorEl.value = "";
+    codeFeedbackEl.className = "feedback";
+    codeFeedbackEl.textContent =
+      "Please check back later for more practice tasks.";
+    nextCodeEl.style.display = "none";
+    return;
+  }
 
-  exerciseSelectEl.innerHTML = "";
-  exercises.forEach((exercise, idx) => {
-    const option = document.createElement("option");
-    option.value = idx;
-    option.textContent = exercise.title;
-    exerciseSelectEl.appendChild(option);
-  });
+  const progress = getCurrentCodeProgress();
+  let exercise = exercises.find(
+    (item) => item.id === progress.currentExerciseId,
+  );
+  if (!exercise) {
+    exercise = pickNextExerciseForClo(clo, progress);
+    progress.currentExerciseId = exercise?.id ?? null;
+  }
 
-  exerciseSelectEl.value = String(state.selectedExerciseIndex);
+  if (!exercise) {
+    return;
+  }
 
-  const exercise = exercises[state.selectedExerciseIndex];
+  codingTitleEl.textContent = `${exercise.title} (${progress.usedExerciseIds.length + 1} of ${exercises.length})`;
   exercisePromptEl.textContent = exercise.prompt;
   codeEditorEl.value = exercise.starter_code;
   codeFeedbackEl.className = "feedback";
   codeFeedbackEl.textContent =
     "Submit your code to receive guided feedback and hints.";
+  nextCodeEl.style.display = "none";
 }
-
-exerciseSelectEl.addEventListener("change", () => {
-  state.selectedExerciseIndex = Number(exerciseSelectEl.value);
-  const clo = getSelectedClo();
-  const exercise = clo.coding_exercises[state.selectedExerciseIndex];
-  exercisePromptEl.textContent = exercise.prompt;
-  codeEditorEl.value = exercise.starter_code;
-  codeFeedbackEl.className = "feedback";
-  codeFeedbackEl.textContent = "Switched exercise. Try solving this one.";
-});
 
 submitCodeEl.addEventListener("click", async () => {
   const clo = getSelectedClo();
-  const exercise = clo.coding_exercises[state.selectedExerciseIndex];
+  const progress = getCurrentCodeProgress();
+  const exercise = (clo.coding_exercises || []).find(
+    (item) => item.id === progress.currentExerciseId,
+  );
+
+  if (!exercise) {
+    codeFeedbackEl.className = "feedback error";
+    codeFeedbackEl.textContent =
+      "No active coding exercise found. Please try Next Question.";
+    return;
+  }
 
   const response = await fetch("/api/assess/code", {
     method: "POST",
@@ -439,9 +484,26 @@ submitCodeEl.addEventListener("click", async () => {
 
   if (success) {
     codeFeedbackEl.textContent = `${result.message} Attempts: ${result.attempts}.`;
+    nextCodeEl.style.display = "inline-block";
   } else {
     codeFeedbackEl.textContent = `${result.message} Hint: ${result.hint} (Attempt ${result.attempts})`;
+    nextCodeEl.style.display = "none";
   }
+});
+
+nextCodeEl.addEventListener("click", () => {
+  const clo = getSelectedClo();
+  const progress = getCurrentCodeProgress();
+  if (
+    progress.currentExerciseId &&
+    !progress.usedExerciseIds.includes(progress.currentExerciseId)
+  ) {
+    progress.usedExerciseIds.push(progress.currentExerciseId);
+  }
+
+  const nextExercise = pickNextExerciseForClo(clo, progress);
+  progress.currentExerciseId = nextExercise?.id ?? null;
+  renderExercises();
 });
 
 function renderAll() {

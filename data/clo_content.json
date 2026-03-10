@@ -301,6 +301,303 @@
               "expected": "zero"
             }
           ]
+        },
+        {
+          "id": "CLO1-C2",
+          "title": "Even or Odd",
+          "prompt": "Write a function is_even(n) that returns 'even' if n is even, otherwise 'odd'.",
+          "starter_code": "def is_even(n):\n    # your code here\n    pass",
+          "function_name": "is_even",
+          "hints": [
+            "Use modulo (%) with 2.",
+            "If n % 2 == 0, return 'even'.",
+            "Otherwise return 'odd'."
+          ],
+          "tests": [
+            {
+              "args": [
+                4
+              ],
+              "expected": "even"
+            },
+            {
+              "args": [
+                7
+              ],
+              "expected": "odd"
+            },
+            {
+              "args": [
+                0
+              ],
+              "expected": "even"
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C3",
+          "title": "Maximum of Two",
+          "prompt": "Write a function max_of_two(a, b) that returns the larger number.",
+          "starter_code": "def max_of_two(a, b):\n    # your code here\n    pass",
+          "function_name": "max_of_two",
+          "hints": [
+            "Use an if/else decision.",
+            "Compare a and b directly.",
+            "Return one value, do not print."
+          ],
+          "tests": [
+            {
+              "args": [
+                3,
+                8
+              ],
+              "expected": 8
+            },
+            {
+              "args": [
+                10,
+                2
+              ],
+              "expected": 10
+            },
+            {
+              "args": [
+                -1,
+                -5
+              ],
+              "expected": -1
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C4",
+          "title": "Absolute Value Manual",
+          "prompt": "Write a function abs_manual(n) that returns absolute value without using abs().",
+          "starter_code": "def abs_manual(n):\n    # your code here\n    pass",
+          "function_name": "abs_manual",
+          "hints": [
+            "If number is negative, negate it.",
+            "If non-negative, return as is.",
+            "No built-in abs in this exercise."
+          ],
+          "tests": [
+            {
+              "args": [
+                -9
+              ],
+              "expected": 9
+            },
+            {
+              "args": [
+                5
+              ],
+              "expected": 5
+            },
+            {
+              "args": [
+                0
+              ],
+              "expected": 0
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C5",
+          "title": "Sign Code",
+          "prompt": "Write a function sign_code(n) that returns 1 for positive, -1 for negative, and 0 for zero.",
+          "starter_code": "def sign_code(n):\n    # your code here\n    pass",
+          "function_name": "sign_code",
+          "hints": [
+            "This is a 3-way branch problem.",
+            "Check n > 0 then n < 0.",
+            "Use 0 as the final case."
+          ],
+          "tests": [
+            {
+              "args": [
+                11
+              ],
+              "expected": 1
+            },
+            {
+              "args": [
+                -3
+              ],
+              "expected": -1
+            },
+            {
+              "args": [
+                0
+              ],
+              "expected": 0
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C6",
+          "title": "Grade Band",
+          "prompt": "Write a function grade_band(score) that returns 'pass' if score >= 50 else 'fail'.",
+          "starter_code": "def grade_band(score):\n    # your code here\n    pass",
+          "function_name": "grade_band",
+          "hints": [
+            "Use a simple if/else branch.",
+            "Check score >= 50 for pass.",
+            "Return exact lowercase strings."
+          ],
+          "tests": [
+            {
+              "args": [
+                75
+              ],
+              "expected": "pass"
+            },
+            {
+              "args": [
+                50
+              ],
+              "expected": "pass"
+            },
+            {
+              "args": [
+                49
+              ],
+              "expected": "fail"
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C7",
+          "title": "Smallest of Three",
+          "prompt": "Write a function min_of_three(a, b, c) that returns the smallest value.",
+          "starter_code": "def min_of_three(a, b, c):\n    # your code here\n    pass",
+          "function_name": "min_of_three",
+          "hints": [
+            "Compare values step by step.",
+            "Track current smallest value.",
+            "Return only the smallest value."
+          ],
+          "tests": [
+            {
+              "args": [
+                3,
+                1,
+                2
+              ],
+              "expected": 1
+            },
+            {
+              "args": [
+                -2,
+                7,
+                5
+              ],
+              "expected": -2
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C8",
+          "title": "Is Positive",
+          "prompt": "Write a function is_positive(n) that returns True if n > 0 else False.",
+          "starter_code": "def is_positive(n):\n    # your code here\n    pass",
+          "function_name": "is_positive",
+          "hints": [
+            "Use a comparison with zero.",
+            "Return boolean values True/False.",
+            "No printing needed."
+          ],
+          "tests": [
+            {
+              "args": [
+                2
+              ],
+              "expected": true
+            },
+            {
+              "args": [
+                0
+              ],
+              "expected": false
+            },
+            {
+              "args": [
+                -1
+              ],
+              "expected": false
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C9",
+          "title": "Swap Pair",
+          "prompt": "Write a function swap_pair(a, b) that returns [b, a].",
+          "starter_code": "def swap_pair(a, b):\n    # your code here\n    pass",
+          "function_name": "swap_pair",
+          "hints": [
+            "Return two values in reversed order.",
+            "Use a list in output.",
+            "Expected format is [b, a]."
+          ],
+          "tests": [
+            {
+              "args": [
+                1,
+                9
+              ],
+              "expected": [
+                9,
+                1
+              ]
+            },
+            {
+              "args": [
+                "x",
+                "y"
+              ],
+              "expected": [
+                "y",
+                "x"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CLO1-C10",
+          "title": "Between Inclusive",
+          "prompt": "Write a function between(x, low, high) that returns True if low <= x <= high.",
+          "starter_code": "def between(x, low, high):\n    # your code here\n    pass",
+          "function_name": "between",
+          "hints": [
+            "Use chained comparison.",
+            "Include both boundaries.",
+            "Return a boolean."
+          ],
+          "tests": [
+            {
+              "args": [
+                5,
+                1,
+                10
+              ],
+              "expected": true
+            },
+            {
+              "args": [
+                1,
+                1,
+                10
+              ],
+              "expected": true
+            },
+            {
+              "args": [
+                11,
+                1,
+                10
+              ],
+              "expected": false
+            }
+          ]
         }
       ]
     },
@@ -640,6 +937,280 @@
               "args": [
                 10,
                 10
+              ],
+              "expected": 0
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C2",
+          "title": "Rectangle Area and Perimeter",
+          "prompt": "Write a function rect_metrics(w, h) that returns [area, perimeter].",
+          "starter_code": "def rect_metrics(w, h):\n    # your code here\n    pass",
+          "function_name": "rect_metrics",
+          "hints": [
+            "Area is w * h.",
+            "Perimeter is 2 * (w + h).",
+            "Return a list in the exact order [area, perimeter]."
+          ],
+          "tests": [
+            {
+              "args": [
+                3,
+                4
+              ],
+              "expected": [
+                12,
+                14
+              ]
+            },
+            {
+              "args": [
+                5,
+                2
+              ],
+              "expected": [
+                10,
+                14
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C3",
+          "title": "Temperature Conversion",
+          "prompt": "Write a function c_to_f(c) that converts Celsius to Fahrenheit.",
+          "starter_code": "def c_to_f(c):\n    # your code here\n    pass",
+          "function_name": "c_to_f",
+          "hints": [
+            "Use formula F = (C * 9/5) + 32.",
+            "Be careful with multiplication and division.",
+            "Return the numeric value."
+          ],
+          "tests": [
+            {
+              "args": [
+                0
+              ],
+              "expected": 32.0
+            },
+            {
+              "args": [
+                100
+              ],
+              "expected": 212.0
+            },
+            {
+              "args": [
+                25
+              ],
+              "expected": 77.0
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C4",
+          "title": "Average of Three",
+          "prompt": "Write a function average3(a, b, c) that returns the arithmetic mean.",
+          "starter_code": "def average3(a, b, c):\n    # your code here\n    pass",
+          "function_name": "average3",
+          "hints": [
+            "Add all three values.",
+            "Divide by 3.",
+            "Return the result directly."
+          ],
+          "tests": [
+            {
+              "args": [
+                3,
+                6,
+                9
+              ],
+              "expected": 6.0
+            },
+            {
+              "args": [
+                1,
+                2,
+                2
+              ],
+              "expected": 1.6666666666666667
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C5",
+          "title": "Power by Multiplication",
+          "prompt": "Write a function square_then_add(x, y) that returns x*x + y.",
+          "starter_code": "def square_then_add(x, y):\n    # your code here\n    pass",
+          "function_name": "square_then_add",
+          "hints": [
+            "Square means multiply x by itself.",
+            "Then add y to that result.",
+            "Do not print."
+          ],
+          "tests": [
+            {
+              "args": [
+                3,
+                2
+              ],
+              "expected": 11
+            },
+            {
+              "args": [
+                5,
+                -1
+              ],
+              "expected": 24
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C6",
+          "title": "Circle Metrics",
+          "prompt": "Write a function circle_metrics(r) that returns [area, circumference] using pi = 3.14.",
+          "starter_code": "def circle_metrics(r):\n    # your code here\n    pass",
+          "function_name": "circle_metrics",
+          "hints": [
+            "Area = pi * r * r.",
+            "Circumference = 2 * pi * r.",
+            "Return as [area, circumference]."
+          ],
+          "tests": [
+            {
+              "args": [
+                1
+              ],
+              "expected": [
+                3.14,
+                6.28
+              ]
+            },
+            {
+              "args": [
+                2
+              ],
+              "expected": [
+                12.56,
+                12.56
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C7",
+          "title": "Seconds to Minutes",
+          "prompt": "Write a function to_minutes(seconds) that returns whole minutes using floor division.",
+          "starter_code": "def to_minutes(seconds):\n    # your code here\n    pass",
+          "function_name": "to_minutes",
+          "hints": [
+            "Use // with 60.",
+            "Return integer result.",
+            "Do not use loops."
+          ],
+          "tests": [
+            {
+              "args": [
+                120
+              ],
+              "expected": 2
+            },
+            {
+              "args": [
+                59
+              ],
+              "expected": 0
+            },
+            {
+              "args": [
+                61
+              ],
+              "expected": 1
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C8",
+          "title": "Is Multiple",
+          "prompt": "Write a function is_multiple(a, b) that returns True if a is a multiple of b, else False.",
+          "starter_code": "def is_multiple(a, b):\n    # your code here\n    pass",
+          "function_name": "is_multiple",
+          "hints": [
+            "Use modulo operator.",
+            "a % b == 0 means multiple.",
+            "Assume b is non-zero."
+          ],
+          "tests": [
+            {
+              "args": [
+                12,
+                3
+              ],
+              "expected": true
+            },
+            {
+              "args": [
+                14,
+                3
+              ],
+              "expected": false
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C9",
+          "title": "Simple Interest",
+          "prompt": "Write a function simple_interest(p, r, t) that returns (p * r * t) / 100.",
+          "starter_code": "def simple_interest(p, r, t):\n    # your code here\n    pass",
+          "function_name": "simple_interest",
+          "hints": [
+            "Follow formula exactly.",
+            "Use / 100 at the end.",
+            "Return numeric result."
+          ],
+          "tests": [
+            {
+              "args": [
+                1000,
+                5,
+                2
+              ],
+              "expected": 100.0
+            },
+            {
+              "args": [
+                2000,
+                3,
+                1
+              ],
+              "expected": 60.0
+            }
+          ]
+        },
+        {
+          "id": "CLO2-C10",
+          "title": "Remainder",
+          "prompt": "Write a function remainder(a, b) that returns a % b.",
+          "starter_code": "def remainder(a, b):\n    # your code here\n    pass",
+          "function_name": "remainder",
+          "hints": [
+            "Use modulo operator %.",
+            "Return the computed value.",
+            "No print statements."
+          ],
+          "tests": [
+            {
+              "args": [
+                10,
+                3
+              ],
+              "expected": 1
+            },
+            {
+              "args": [
+                20,
+                5
               ],
               "expected": 0
             }
@@ -1015,6 +1586,281 @@
               "expected": 6
             }
           ]
+        },
+        {
+          "id": "CLO3-C2",
+          "title": "Count Down Sum",
+          "prompt": "Write a function sum_to_n(n) that returns 1 + 2 + ... + n for n >= 0.",
+          "starter_code": "def sum_to_n(n):\n    # your code here\n    pass",
+          "function_name": "sum_to_n",
+          "hints": [
+            "Use a loop with an accumulator.",
+            "Start accumulator from 0.",
+            "Include n in the sum."
+          ],
+          "tests": [
+            {
+              "args": [
+                0
+              ],
+              "expected": 0
+            },
+            {
+              "args": [
+                4
+              ],
+              "expected": 10
+            },
+            {
+              "args": [
+                7
+              ],
+              "expected": 28
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C3",
+          "title": "Count Vowels",
+          "prompt": "Write a function count_vowels(text) that returns number of vowels (a,e,i,o,u).",
+          "starter_code": "def count_vowels(text):\n    # your code here\n    pass",
+          "function_name": "count_vowels",
+          "hints": [
+            "Loop through each character.",
+            "Normalize to lowercase first.",
+            "Count when char is in vowels set."
+          ],
+          "tests": [
+            {
+              "args": [
+                "apple"
+              ],
+              "expected": 2
+            },
+            {
+              "args": [
+                "PYTHON"
+              ],
+              "expected": 1
+            },
+            {
+              "args": [
+                "rhythm"
+              ],
+              "expected": 0
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C4",
+          "title": "Find Largest in List",
+          "prompt": "Write a function largest(items) that returns the largest number in a non-empty list.",
+          "starter_code": "def largest(items):\n    # your code here\n    pass",
+          "function_name": "largest",
+          "hints": [
+            "Initialize with first item.",
+            "Loop and compare each value.",
+            "Update current maximum when needed."
+          ],
+          "tests": [
+            {
+              "args": [
+                [
+                  3,
+                  9,
+                  2
+                ]
+              ],
+              "expected": 9
+            },
+            {
+              "args": [
+                [
+                  -5,
+                  -1,
+                  -7
+                ]
+              ],
+              "expected": -1
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C5",
+          "title": "Reverse String",
+          "prompt": "Write a function reverse_text(text) that returns the reversed text.",
+          "starter_code": "def reverse_text(text):\n    # your code here\n    pass",
+          "function_name": "reverse_text",
+          "hints": [
+            "Python slicing can reverse sequences.",
+            "Alternative: build result in loop.",
+            "Return the reversed string."
+          ],
+          "tests": [
+            {
+              "args": [
+                "cat"
+              ],
+              "expected": "tac"
+            },
+            {
+              "args": [
+                "level"
+              ],
+              "expected": "level"
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C6",
+          "title": "Count Evens",
+          "prompt": "Write a function count_evens(items) that returns how many even numbers are in the list.",
+          "starter_code": "def count_evens(items):\n    # your code here\n    pass",
+          "function_name": "count_evens",
+          "hints": [
+            "Loop through each item.",
+            "Check n % 2 == 0.",
+            "Increment a counter."
+          ],
+          "tests": [
+            {
+              "args": [
+                [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              ],
+              "expected": 2
+            },
+            {
+              "args": [
+                [
+                  2,
+                  2,
+                  2
+                ]
+              ],
+              "expected": 3
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C7",
+          "title": "Power Loop",
+          "prompt": "Write a function power_loop(base, exp) that returns base^exp using a loop (exp >= 0).",
+          "starter_code": "def power_loop(base, exp):\n    # your code here\n    pass",
+          "function_name": "power_loop",
+          "hints": [
+            "Start result at 1.",
+            "Multiply by base exp times.",
+            "Handle exp = 0 correctly."
+          ],
+          "tests": [
+            {
+              "args": [
+                2,
+                3
+              ],
+              "expected": 8
+            },
+            {
+              "args": [
+                5,
+                0
+              ],
+              "expected": 1
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C8",
+          "title": "First Non-Negative",
+          "prompt": "Write a function first_non_negative(items) that returns first value >= 0, or None if none found.",
+          "starter_code": "def first_non_negative(items):\n    # your code here\n    pass",
+          "function_name": "first_non_negative",
+          "hints": [
+            "Loop from start to end.",
+            "Return immediately when condition matches.",
+            "If loop ends, return None."
+          ],
+          "tests": [
+            {
+              "args": [
+                [
+                  -3,
+                  -2,
+                  5,
+                  7
+                ]
+              ],
+              "expected": 5
+            },
+            {
+              "args": [
+                [
+                  -1,
+                  -4
+                ]
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C9",
+          "title": "Count Character",
+          "prompt": "Write a function count_char(text, ch) that counts occurrences of ch in text.",
+          "starter_code": "def count_char(text, ch):\n    # your code here\n    pass",
+          "function_name": "count_char",
+          "hints": [
+            "Traverse text one character at a time.",
+            "Compare with ch.",
+            "Increment counter on match."
+          ],
+          "tests": [
+            {
+              "args": [
+                "banana",
+                "a"
+              ],
+              "expected": 3
+            },
+            {
+              "args": [
+                "python",
+                "z"
+              ],
+              "expected": 0
+            }
+          ]
+        },
+        {
+          "id": "CLO3-C10",
+          "title": "Is Palindrome",
+          "prompt": "Write a function is_palindrome(text) that returns True if text reads same forward and backward.",
+          "starter_code": "def is_palindrome(text):\n    # your code here\n    pass",
+          "function_name": "is_palindrome",
+          "hints": [
+            "Compare text to its reverse.",
+            "Case-sensitive check is fine.",
+            "Return True/False."
+          ],
+          "tests": [
+            {
+              "args": [
+                "level"
+              ],
+              "expected": true
+            },
+            {
+              "args": [
+                "python"
+              ],
+              "expected": false
+            }
+          ]
         }
       ]
     },
@@ -1342,6 +2188,268 @@
               "expected": null
             }
           ]
+        },
+        {
+          "id": "CLO4-C2",
+          "title": "Safe Integer Parse",
+          "prompt": "Write a function parse_int(text) that returns int(text), or None if invalid.",
+          "starter_code": "def parse_int(text):\n    # your code here\n    pass",
+          "function_name": "parse_int",
+          "hints": [
+            "Use try/except around int conversion.",
+            "Catch ValueError.",
+            "Return None when parsing fails."
+          ],
+          "tests": [
+            {
+              "args": [
+                "42"
+              ],
+              "expected": 42
+            },
+            {
+              "args": [
+                "-7"
+              ],
+              "expected": -7
+            },
+            {
+              "args": [
+                "x9"
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C3",
+          "title": "Safe Ratio",
+          "prompt": "Write a function ratio(a, b) that returns a / b, or None when b is zero.",
+          "starter_code": "def ratio(a, b):\n    # your code here\n    pass",
+          "function_name": "ratio",
+          "hints": [
+            "You can use if b == 0 check.",
+            "Or use try/except ZeroDivisionError.",
+            "Return None for invalid division."
+          ],
+          "tests": [
+            {
+              "args": [
+                9,
+                3
+              ],
+              "expected": 3.0
+            },
+            {
+              "args": [
+                5,
+                0
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C4",
+          "title": "Read First Line Safely",
+          "prompt": "Write a function first_line(path) that returns first line (without trailing newline) or None on error.",
+          "starter_code": "def first_line(path):\n    # your code here\n    pass",
+          "function_name": "first_line",
+          "hints": [
+            "Open file in read mode inside try block.",
+            "Use readline() then strip newline.",
+            "If file cannot be read, return None."
+          ],
+          "tests": [
+            {
+              "args": [
+                "README.md"
+              ],
+              "expected": "# Applied Programming Tutor"
+            },
+            {
+              "args": [
+                "missing_file_123.txt"
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C5",
+          "title": "Guarded List Access",
+          "prompt": "Write a function item_at(items, idx) that returns items[idx] or None if index is invalid.",
+          "starter_code": "def item_at(items, idx):\n    # your code here\n    pass",
+          "function_name": "item_at",
+          "hints": [
+            "Index access can raise IndexError.",
+            "Use try/except or boundary checks.",
+            "Return None for invalid index."
+          ],
+          "tests": [
+            {
+              "args": [
+                [
+                  10,
+                  20,
+                  30
+                ],
+                1
+              ],
+              "expected": 20
+            },
+            {
+              "args": [
+                [
+                  10,
+                  20,
+                  30
+                ],
+                9
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C6",
+          "title": "Safe Float Parse",
+          "prompt": "Write a function parse_float(text) that returns float(text), or None if invalid.",
+          "starter_code": "def parse_float(text):\n    # your code here\n    pass",
+          "function_name": "parse_float",
+          "hints": [
+            "Use try/except around float().",
+            "Catch ValueError.",
+            "Return None on failure."
+          ],
+          "tests": [
+            {
+              "args": [
+                "3.5"
+              ],
+              "expected": 3.5
+            },
+            {
+              "args": [
+                "abc"
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C7",
+          "title": "Safe Division With Default",
+          "prompt": "Write a function divide_or_default(a, b, default) that returns a/b, or default if division fails.",
+          "starter_code": "def divide_or_default(a, b, default):\n    # your code here\n    pass",
+          "function_name": "divide_or_default",
+          "hints": [
+            "Try normal division first.",
+            "Catch ZeroDivisionError.",
+            "Return default in exception path."
+          ],
+          "tests": [
+            {
+              "args": [
+                8,
+                2,
+                -1
+              ],
+              "expected": 4.0
+            },
+            {
+              "args": [
+                8,
+                0,
+                -1
+              ],
+              "expected": -1
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C8",
+          "title": "Safe File Size",
+          "prompt": "Write a function file_size(path) that returns file size in bytes, or None if file is missing.",
+          "starter_code": "def file_size(path):\n    # your code here\n    pass",
+          "function_name": "file_size",
+          "hints": [
+            "Open file in binary mode and read content length.",
+            "Use try/except for missing file.",
+            "Return len(content)."
+          ],
+          "tests": [
+            {
+              "args": [
+                "requirements.txt"
+              ],
+              "expected": 13
+            },
+            {
+              "args": [
+                "missing_file_456.txt"
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C9",
+          "title": "Safe Dict Lookup",
+          "prompt": "Write a function safe_get(mapping, key) that returns mapping[key], or None when key is absent.",
+          "starter_code": "def safe_get(mapping, key):\n    # your code here\n    pass",
+          "function_name": "safe_get",
+          "hints": [
+            "Use dictionary key lookup.",
+            "Handle KeyError or use .get().",
+            "Return None for missing key."
+          ],
+          "tests": [
+            {
+              "args": [
+                {
+                  "a": 1
+                },
+                "a"
+              ],
+              "expected": 1
+            },
+            {
+              "args": [
+                {
+                  "a": 1
+                },
+                "z"
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO4-C10",
+          "title": "Safe Reciprocal",
+          "prompt": "Write a function reciprocal(n) that returns 1/n, or None for n == 0.",
+          "starter_code": "def reciprocal(n):\n    # your code here\n    pass",
+          "function_name": "reciprocal",
+          "hints": [
+            "Check for zero before dividing.",
+            "Or catch ZeroDivisionError.",
+            "Return float result when valid."
+          ],
+          "tests": [
+            {
+              "args": [
+                4
+              ],
+              "expected": 0.25
+            },
+            {
+              "args": [
+                0
+              ],
+              "expected": null
+            }
+          ]
         }
       ]
     },
@@ -1637,6 +2745,280 @@
                 3
               ],
               "expected": 6.0
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C2",
+          "title": "Midpoint Interpolation",
+          "prompt": "Write a function midpoint(y0, y1) that returns value halfway between y0 and y1.",
+          "starter_code": "def midpoint(y0, y1):\n    # your code here\n    pass",
+          "function_name": "midpoint",
+          "hints": [
+            "Halfway point is average of two values.",
+            "Use (y0 + y1) / 2.",
+            "Return numeric result."
+          ],
+          "tests": [
+            {
+              "args": [
+                0,
+                10
+              ],
+              "expected": 5.0
+            },
+            {
+              "args": [
+                3,
+                7
+              ],
+              "expected": 5.0
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C3",
+          "title": "Slope Between Points",
+          "prompt": "Write a function slope(x0, y0, x1, y1) that returns (y1 - y0) / (x1 - x0), or None if undefined.",
+          "starter_code": "def slope(x0, y0, x1, y1):\n    # your code here\n    pass",
+          "function_name": "slope",
+          "hints": [
+            "Check denominator x1 - x0 before dividing.",
+            "If denominator is zero, return None.",
+            "Otherwise compute normal slope formula."
+          ],
+          "tests": [
+            {
+              "args": [
+                0,
+                0,
+                2,
+                4
+              ],
+              "expected": 2.0
+            },
+            {
+              "args": [
+                1,
+                3,
+                1,
+                7
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C4",
+          "title": "Linear Prediction",
+          "prompt": "Write a function linear_predict(m, c, x) that returns y = m*x + c.",
+          "starter_code": "def linear_predict(m, c, x):\n    # your code here\n    pass",
+          "function_name": "linear_predict",
+          "hints": [
+            "Multiply slope m by x.",
+            "Add intercept c.",
+            "Return computed y."
+          ],
+          "tests": [
+            {
+              "args": [
+                2,
+                1,
+                5
+              ],
+              "expected": 11
+            },
+            {
+              "args": [
+                -1,
+                3,
+                4
+              ],
+              "expected": -1
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C5",
+          "title": "Clamp Sensor Reading",
+          "prompt": "Write a function clamp_reading(v, low, high) that clamps v into [low, high].",
+          "starter_code": "def clamp_reading(v, low, high):\n    # your code here\n    pass",
+          "function_name": "clamp_reading",
+          "hints": [
+            "If v < low return low.",
+            "If v > high return high.",
+            "Otherwise return v unchanged."
+          ],
+          "tests": [
+            {
+              "args": [
+                5,
+                0,
+                10
+              ],
+              "expected": 5
+            },
+            {
+              "args": [
+                -3,
+                0,
+                10
+              ],
+              "expected": 0
+            },
+            {
+              "args": [
+                15,
+                0,
+                10
+              ],
+              "expected": 10
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C6",
+          "title": "Distance 1D",
+          "prompt": "Write a function distance_1d(x0, x1) that returns absolute distance between points.",
+          "starter_code": "def distance_1d(x0, x1):\n    # your code here\n    pass",
+          "function_name": "distance_1d",
+          "hints": [
+            "Distance is absolute difference.",
+            "You may use abs().",
+            "Return non-negative value."
+          ],
+          "tests": [
+            {
+              "args": [
+                2,
+                10
+              ],
+              "expected": 8
+            },
+            {
+              "args": [
+                10,
+                2
+              ],
+              "expected": 8
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C7",
+          "title": "Scale Reading",
+          "prompt": "Write a function scale_reading(v, factor) that returns v * factor.",
+          "starter_code": "def scale_reading(v, factor):\n    # your code here\n    pass",
+          "function_name": "scale_reading",
+          "hints": [
+            "Multiply value by factor.",
+            "Return numeric output.",
+            "No print statements."
+          ],
+          "tests": [
+            {
+              "args": [
+                3,
+                2.5
+              ],
+              "expected": 7.5
+            },
+            {
+              "args": [
+                4,
+                1
+              ],
+              "expected": 4
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C8",
+          "title": "Average Sensor",
+          "prompt": "Write a function avg_sensor(a, b, c, d) that returns average of four readings.",
+          "starter_code": "def avg_sensor(a, b, c, d):\n    # your code here\n    pass",
+          "function_name": "avg_sensor",
+          "hints": [
+            "Add all four values.",
+            "Divide by 4.",
+            "Return the average."
+          ],
+          "tests": [
+            {
+              "args": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "expected": 2.5
+            },
+            {
+              "args": [
+                10,
+                10,
+                10,
+                10
+              ],
+              "expected": 10.0
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C9",
+          "title": "Linear Offset",
+          "prompt": "Write a function add_offset(value, offset) that returns value + offset.",
+          "starter_code": "def add_offset(value, offset):\n    # your code here\n    pass",
+          "function_name": "add_offset",
+          "hints": [
+            "Simple arithmetic addition.",
+            "Return final value.",
+            "No branching required."
+          ],
+          "tests": [
+            {
+              "args": [
+                5,
+                3
+              ],
+              "expected": 8
+            },
+            {
+              "args": [
+                -2,
+                7
+              ],
+              "expected": 5
+            }
+          ]
+        },
+        {
+          "id": "CLO5-C10",
+          "title": "Normalize 0-1",
+          "prompt": "Write a function normalize(v, low, high) that returns (v-low)/(high-low), or None if high==low.",
+          "starter_code": "def normalize(v, low, high):\n    # your code here\n    pass",
+          "function_name": "normalize",
+          "hints": [
+            "Check denominator first.",
+            "Return None when high equals low.",
+            "Else compute the formula exactly."
+          ],
+          "tests": [
+            {
+              "args": [
+                5,
+                0,
+                10
+              ],
+              "expected": 0.5
+            },
+            {
+              "args": [
+                3,
+                3,
+                3
+              ],
+              "expected": null
             }
           ]
         }
