@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import json
 import multiprocessing as mp
+import re
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +14,7 @@ app = Flask(__name__)
 DATA_FILE = Path(__file__).parent / "data" / "clo_content.json"
 SLIDES_DIR = Path(__file__).parent / "slides"
 ATTEMPT_TRACKER: dict[tuple[str, str, str], int] = {}
+APP_VERSION = "20260310-2"
 
 ALLOWED_BUILTINS = {
     "abs": abs,
@@ -62,6 +64,80 @@ def get_clo_slides(clo_id: str) -> list[dict[str, str]]:
         }
         for slide_file in slide_files
     ]
+
+
+def simplify_function_code_header(code: str, function_name: str | None) -> str:
+    if not code:
+        return code
+
+    name_pattern = re.escape(function_name) if function_name else r"[A-Za-z_][A-Za-z0-9_]*"
+    match = re.search(rf"^\s*def\s+({name_pattern})\s*\(([^)]*)\)\s*:", code, re.MULTILINE)
+    if not match:
+        fallback = re.search(r"^\s*def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(([^)]*)\)\s*:", code, re.MULTILINE)
+        if not fallback:
+            fallback_name = function_name or "solution"
+            return f"def {fallback_name}():\n    pass"
+        match = fallback
+
+    lines = code.split("\n")
+    definition_line_index = code[: match.start()].count("\n")
+    definition_line = lines[definition_line_index] if definition_line_index < len(lines) else ""
+    function_indent = len(definition_line) - len(definition_line.lstrip())
+
+    raw_params = match.group(2) if match.lastindex and match.lastindex >= 2 else ""
+    params = ", ".join(
+        param.strip()
+        for param in raw_params.split(",")
+        if param.strip() and param.strip() not in {"self", "cls"}
+    )
+
+    normalized_function_name = function_name or match.group(1)
+
+    block_end = len(lines)
+    for index in range(definition_line_index + 1, len(lines)):
+        current_line = lines[index]
+        if not current_line.strip():
+            continue
+        current_indent = len(current_line) - len(current_line.lstrip())
+        if current_indent <= function_indent:
+            block_end = index
+            break
+
+    body_lines = lines[definition_line_index + 1 : block_end]
+    non_empty_indents = [
+        len(line) - len(line.lstrip())
+        for line in body_lines
+        if line.strip() and (len(line) - len(line.lstrip())) > function_indent
+    ]
+
+    dedent_amount = min(non_empty_indents) if non_empty_indents else function_indent + 4
+    normalized_body_lines: list[str] = []
+    for line in body_lines:
+        if not line.strip():
+            normalized_body_lines.append("")
+            continue
+        normalized_body_lines.append(line[dedent_amount:])
+
+    normalized_body = "\n".join(normalized_body_lines).strip("\n")
+    if not normalized_body.strip():
+        normalized_body = "    pass"
+
+    return f"def {normalized_function_name}({params}):\n{normalized_body}"
+
+
+def simplify_exercise_prompt(prompt: str, function_name: str | None) -> str:
+    if not prompt:
+        return prompt
+
+    cleaned = prompt
+    cleaned = re.sub(r"\b(class\s+solution|solution\s+class)\b", "function", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\bself\b", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+
+    if function_name and "write a function" not in cleaned.lower() and "function" not in cleaned.lower():
+        cleaned = f"Write a function {function_name}(...). {cleaned}"
+
+    return cleaned
 
 
 def _run_code_worker(
@@ -151,7 +227,7 @@ def evaluate_code(
 
 @app.route("/")
 def home() -> str:
-    return render_template("index.html")
+    return render_template("index.html", app_version=APP_VERSION)
 
 
 @app.get("/api/clos")
@@ -160,6 +236,15 @@ def get_clos() -> Any:
     for clo in data.get("clos", []):
         clo_id = clo.get("id")
         clo["slides"] = get_clo_slides(clo_id) if clo_id else []
+        for exercise in clo.get("coding_exercises", []):
+            function_name = exercise.get("function_name")
+            exercise["prompt"] = simplify_exercise_prompt(exercise.get("prompt", ""), function_name)
+            exercise["starter_code"] = simplify_function_code_header(
+                exercise.get("starter_code", ""), function_name
+            )
+            exercise["solution_code"] = simplify_function_code_header(
+                exercise.get("solution_code", ""), function_name
+            )
     return jsonify(data)
 
 

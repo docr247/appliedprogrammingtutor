@@ -268,18 +268,126 @@ body {
   color: #0f172a;
 }
 
+.code-editor-shell {
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1f2937;
+  background: #0f172a;
+}
+
+.code-editor-toolbar {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-bottom: 1px solid #1e293b;
+  background: #111827;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red {
+  background: #f87171;
+}
+
+.dot-yellow {
+  background: #fbbf24;
+}
+
+.dot-green {
+  background: #34d399;
+}
+
+.code-editor-label {
+  margin-left: 8px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.code-editor-stage {
+  position: relative;
+  min-height: 260px;
+}
+
+#code-lines {
+  margin: 0;
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 54px;
+  min-height: 260px;
+  padding: 12px 8px;
+  border-right: 1px solid #1e293b;
+  background: #111827;
+  color: #64748b;
+  text-align: right;
+  pointer-events: none;
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+#code-highlight,
 #code-editor {
+  margin: 0;
   width: 100%;
-  margin-top: 8px;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  padding: 10px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  min-height: 260px;
+  padding: 12px 14px 12px 66px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  tab-size: 4;
+  white-space: pre;
+  overflow: auto;
+}
+
+#code-highlight {
+  color: #e2e8f0;
+  pointer-events: none;
 }
 
 #code-editor {
-  min-height: 220px;
+  position: absolute;
+  inset: 0;
+  border: none;
+  outline: none;
   resize: vertical;
+  background: transparent;
+  color: transparent;
+  caret-color: #e2e8f0;
+}
+
+#code-editor::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+#code-highlight .py-comment {
+  color: #64748b;
+}
+
+#code-highlight .py-keyword {
+  color: #c084fc;
+}
+
+#code-highlight .py-string {
+  color: #fbbf24;
+}
+
+#code-highlight .py-number {
+  color: #22d3ee;
+}
+
+#code-highlight .py-func {
+  color: #60a5fa;
 }
 
 .exercise-prompt {

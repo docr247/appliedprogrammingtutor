@@ -6,7 +6,7 @@
     <title>Applied Programming Tutor</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
+      href="{{ url_for('static', filename='styles.css', v=app_version) }}"
     />
   </head>
   <body>
@@ -51,7 +51,19 @@
           <div id="panel-code" class="panel">
             <h3 id="coding-title">Coding Exercise</h3>
             <p id="exercise-prompt" class="exercise-prompt"></p>
-            <textarea id="code-editor" spellcheck="false"></textarea>
+            <div class="code-editor-shell">
+              <div class="code-editor-toolbar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="code-editor-label">main.py</span>
+              </div>
+              <div class="code-editor-stage">
+                <pre id="code-lines" aria-hidden="true"></pre>
+                <pre id="code-highlight" aria-hidden="true"></pre>
+                <textarea id="code-editor" spellcheck="false"></textarea>
+              </div>
+            </div>
             <button id="submit-code" class="primary">Check My Code</button>
             <button id="next-code" class="secondary" style="display: none">
               Next Question
@@ -82,6 +94,6 @@
       </div>
     </div>
 
-    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js', v=app_version) }}"></script>
   </body>
 </html>
