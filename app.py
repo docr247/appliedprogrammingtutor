@@ -6,11 +6,12 @@ import multiprocessing as mp
 from pathlib import Path
 from typing import Any
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, abort, jsonify, render_template, request, send_from_directory, url_for
 
 app = Flask(__name__)
 
 DATA_FILE = Path(__file__).parent / "data" / "clo_content.json"
+SLIDES_DIR = Path(__file__).parent / "slides"
 ATTEMPT_TRACKER: dict[tuple[str, str, str], int] = {}
 
 ALLOWED_BUILTINS = {
@@ -46,6 +47,21 @@ def load_course_data() -> dict[str, Any]:
 
 def find_clo(course_data: dict[str, Any], clo_id: str) -> dict[str, Any] | None:
     return next((clo for clo in course_data["clos"] if clo["id"] == clo_id), None)
+
+
+def get_clo_slides(clo_id: str) -> list[dict[str, str]]:
+    clo_slides_dir = SLIDES_DIR / clo_id
+    if not clo_slides_dir.exists() or not clo_slides_dir.is_dir():
+        return []
+
+    slide_files = sorted(clo_slides_dir.glob("*.pdf"), key=lambda file: file.name.lower())
+    return [
+        {
+            "title": slide_file.stem.replace("_", " "),
+            "url": url_for("get_slide_file", clo_id=clo_id, filename=slide_file.name),
+        }
+        for slide_file in slide_files
+    ]
 
 
 def _run_code_worker(
@@ -141,7 +157,22 @@ def home() -> str:
 @app.get("/api/clos")
 def get_clos() -> Any:
     data = load_course_data()
+    for clo in data.get("clos", []):
+        clo_id = clo.get("id")
+        clo["slides"] = get_clo_slides(clo_id) if clo_id else []
     return jsonify(data)
+
+
+@app.get("/slides/<clo_id>/<path:filename>")
+def get_slide_file(clo_id: str, filename: str) -> Any:
+    if Path(filename).suffix.lower() != ".pdf":
+        abort(404)
+
+    clo_slides_dir = SLIDES_DIR / clo_id
+    if not clo_slides_dir.exists() or not clo_slides_dir.is_dir():
+        abort(404)
+
+    return send_from_directory(clo_slides_dir, filename)
 
 
 @app.post("/api/assess/mcq")

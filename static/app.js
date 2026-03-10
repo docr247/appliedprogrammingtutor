@@ -11,6 +11,7 @@ const state = {
 const cloListEl = document.getElementById("clo-list");
 const cloTitleEl = document.getElementById("clo-title");
 const cloIdEl = document.getElementById("clo-id");
+const slidesContainerEl = document.getElementById("slides-container");
 const summaryListEl = document.getElementById("summary-list");
 const videosGridEl = document.getElementById("videos-grid");
 const videoWeekFilterEl = document.getElementById("video-week-filter");
@@ -110,6 +111,39 @@ function renderSummary() {
     const li = document.createElement("li");
     li.textContent = item;
     summaryListEl.appendChild(li);
+  });
+}
+
+function renderSlides() {
+  const clo = getSelectedClo();
+  const slides = clo.slides || [];
+  slidesContainerEl.innerHTML = "";
+
+  if (!slides.length) {
+    const emptyState = document.createElement("p");
+    emptyState.className = "videos-empty";
+    emptyState.textContent = "No slides available for this CLO yet.";
+    slidesContainerEl.appendChild(emptyState);
+    return;
+  }
+
+  slides.forEach((slide, index) => {
+    const card = document.createElement("div");
+    card.className = "slide-card";
+
+    const title = document.createElement("p");
+    title.className = "slide-title";
+    title.textContent = slide.title || `Slide ${index + 1}`;
+
+    const frame = document.createElement("iframe");
+    frame.className = "slide-frame";
+    frame.src = slide.url;
+    frame.title = slide.title || `Slide ${index + 1}`;
+    frame.loading = "lazy";
+
+    card.appendChild(title);
+    card.appendChild(frame);
+    slidesContainerEl.appendChild(card);
   });
 }
 
@@ -412,6 +446,7 @@ submitCodeEl.addEventListener("click", async () => {
 
 function renderAll() {
   renderCloButtons();
+  renderSlides();
   renderSummary();
   renderVideos();
   renderMcq();
