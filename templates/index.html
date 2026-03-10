@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applied Programming Tutor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1>Applied Programming Tutor</h1>
+        <p class="subtitle">AI-assisted learning for CLO 1–5</p>
+        <div id="clo-list" class="clo-list"></div>
+      </aside>
+
+      <main class="content">
+        <section class="card">
+          <div class="card-header">
+            <h2 id="clo-title">Loading...</h2>
+            <span id="clo-id" class="pill"></span>
+          </div>
+          <h3>Slide Summary</h3>
+          <ul id="summary-list" class="summary-list"></ul>
+
+          <h3>Video Lessons</h3>
+          <div class="videos-toolbar">
+            <label for="video-week-filter">Filter by week</label>
+            <select id="video-week-filter"></select>
+            <span id="video-count" class="video-count"></span>
+          </div>
+          <div id="videos-grid" class="videos-grid"></div>
+        </section>
+
+        <section class="card">
+          <div class="tab-header">
+            <button id="tab-mcq" class="tab">MCQ Assessment</button>
+            <button id="tab-code" class="tab">Coding Exercise</button>
+          </div>
+
+          <div id="panel-mcq" class="panel">
+            <div id="mcq-container"></div>
+          </div>
+
+          <div id="panel-code" class="panel">
+            <label for="exercise-select">Select exercise</label>
+            <select id="exercise-select"></select>
+
+            <p id="exercise-prompt" class="exercise-prompt"></p>
+            <textarea id="code-editor" spellcheck="false"></textarea>
+            <button id="submit-code" class="primary">Check My Code</button>
+
+            <div id="code-feedback" class="feedback"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

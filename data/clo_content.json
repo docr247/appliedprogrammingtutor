@@ -1,0 +1,1646 @@
+{
+  "course_title": "Applied Programming with Python",
+  "clos": [
+    {
+      "id": "CLO1",
+      "title": "Programming Logic, Flowcharts, and Python Basics",
+      "summary": [
+        "Week 1 introduces programming language concepts and algorithmic thinking using flowcharts.",
+        "Students learn how to represent sequence, selection, and repetition visually before coding.",
+        "Week 2 connects flowchart logic to core Python basics including syntax and simple program structure."
+      ],
+      "videos": [
+        {
+          "title": "Week 1: Programming Languages and Flowcharts (Video 1)",
+          "url": "https://youtu.be/QfZyUjYROyw"
+        },
+        {
+          "title": "Week 1: Programming Languages and Flowcharts (Video 2)",
+          "url": "https://youtu.be/DLX_NxbNoVs"
+        },
+        {
+          "title": "Week 2: Flowcharts and Basics of Python (Video 1)",
+          "url": "https://youtu.be/axy8vajNkl8"
+        },
+        {
+          "title": "Week 2: Flowcharts and Basics of Python (Video 2)",
+          "url": "https://youtu.be/KnCcd1RQ-eI"
+        }
+      ],
+      "mcq": [
+        {
+          "id": "CLO1-M1",
+          "question": "What is the main purpose of a flowchart in programming?",
+          "options": [
+            "To run Python code faster",
+            "To visually represent program logic",
+            "To replace testing",
+            "To install Python libraries"
+          ],
+          "answer_index": 1,
+          "explanation": "Flowcharts help students design and communicate the logic of a program before implementation."
+        },
+        {
+          "id": "CLO1-M2",
+          "question": "Which flowchart shape is most commonly used for decisions (yes/no)?",
+          "options": [
+            "Oval",
+            "Rectangle",
+            "Diamond",
+            "Parallelogram"
+          ],
+          "answer_index": 2,
+          "explanation": "The diamond symbol represents branching decisions in flowcharts."
+        },
+        {
+          "id": "CLO1-M3",
+          "question": "Which flowchart symbol usually marks the start or end of a process?",
+          "options": [
+            "Rectangle",
+            "Diamond",
+            "Oval",
+            "Arrow"
+          ],
+          "answer_index": 2,
+          "explanation": "The oval (terminator) symbol is used for Start/End."
+        },
+        {
+          "id": "CLO1-M4",
+          "question": "In a flowchart, a rectangle generally represents:",
+          "options": [
+            "Input/Output",
+            "A process step",
+            "A decision",
+            "A connector"
+          ],
+          "answer_index": 1,
+          "explanation": "A rectangle represents a processing/action step."
+        },
+        {
+          "id": "CLO1-M5",
+          "question": "Which construct best matches a yes/no branch in code?",
+          "options": [
+            "Sequence",
+            "Selection (if/else)",
+            "Import",
+            "Comment"
+          ],
+          "answer_index": 1,
+          "explanation": "A decision branch maps to selection using if/else."
+        },
+        {
+          "id": "CLO1-M6",
+          "question": "What is the purpose of indentation in Python?",
+          "options": [
+            "To decorate output",
+            "To define code blocks",
+            "To speed execution",
+            "To import modules"
+          ],
+          "answer_index": 1,
+          "explanation": "Indentation defines block structure in Python."
+        },
+        {
+          "id": "CLO1-M7",
+          "question": "Which of these is a valid Python variable name?",
+          "options": [
+            "2value",
+            "user-name",
+            "user_name",
+            "class"
+          ],
+          "answer_index": 2,
+          "explanation": "Variable names can use underscores and cannot start with digits."
+        },
+        {
+          "id": "CLO1-M8",
+          "question": "What does this print? print(type(5).__name__)",
+          "options": [
+            "number",
+            "int",
+            "float",
+            "str"
+          ],
+          "answer_index": 1,
+          "explanation": "The type name of 5 in Python is int."
+        },
+        {
+          "id": "CLO1-M9",
+          "question": "A sequence structure means:",
+          "options": [
+            "Steps executed in order",
+            "Random execution",
+            "Infinite loop only",
+            "Skipping all conditions"
+          ],
+          "answer_index": 0,
+          "explanation": "Sequence is straight-line execution in defined order."
+        },
+        {
+          "id": "CLO1-M10",
+          "question": "Which keyword begins a conditional statement in Python?",
+          "options": [
+            "for",
+            "while",
+            "if",
+            "def"
+          ],
+          "answer_index": 2,
+          "explanation": "Conditionals begin with if."
+        },
+        {
+          "id": "CLO1-M11",
+          "question": "What is algorithmic thinking mainly about?",
+          "options": [
+            "Memorizing syntax only",
+            "Designing step-by-step solutions",
+            "Avoiding decomposition",
+            "Ignoring input/output"
+          ],
+          "answer_index": 1,
+          "explanation": "Algorithmic thinking is structured step-by-step problem solving."
+        },
+        {
+          "id": "CLO1-M12",
+          "question": "Which symbol indicates direction of flow in a flowchart?",
+          "options": [
+            "Curly braces",
+            "Arrows",
+            "Tabs",
+            "Semicolons"
+          ],
+          "answer_index": 1,
+          "explanation": "Arrows connect symbols and show control flow direction."
+        },
+        {
+          "id": "CLO1-M13",
+          "question": "Which is the correct way to write a comment in Python?",
+          "options": [
+            "// comment",
+            "/* comment */",
+            "# comment",
+            "-- comment"
+          ],
+          "answer_index": 2,
+          "explanation": "Python uses # for single-line comments."
+        },
+        {
+          "id": "CLO1-M14",
+          "question": "What is the output of: print(3 > 2)",
+          "options": [
+            "3",
+            "2",
+            "True",
+            "False"
+          ],
+          "answer_index": 2,
+          "explanation": "Since 3 is greater than 2, the boolean result is True."
+        },
+        {
+          "id": "CLO1-M15",
+          "question": "Which of the following is NOT a control structure concept from basic logic?",
+          "options": [
+            "Sequence",
+            "Selection",
+            "Repetition",
+            "Compilation"
+          ],
+          "answer_index": 3,
+          "explanation": "Compilation is a build process, not a core control-flow structure."
+        },
+        {
+          "id": "CLO1-M16",
+          "question": "In Python, a block under if must be:",
+          "options": [
+            "In parentheses",
+            "Indented",
+            "Inside quotes",
+            "All uppercase"
+          ],
+          "answer_index": 1,
+          "explanation": "Python uses indentation to define if-block bodies."
+        },
+        {
+          "id": "CLO1-M17",
+          "question": "Which data type is typically used for yes/no values?",
+          "options": [
+            "str",
+            "int",
+            "bool",
+            "list"
+          ],
+          "answer_index": 2,
+          "explanation": "Boolean type stores True/False values."
+        },
+        {
+          "id": "CLO1-M18",
+          "question": "A pseudocode or flowchart is most useful:",
+          "options": [
+            "After deployment only",
+            "Before coding implementation",
+            "Only during debugging",
+            "Only for web apps"
+          ],
+          "answer_index": 1,
+          "explanation": "Planning artifacts are most useful before coding."
+        },
+        {
+          "id": "CLO1-M19",
+          "question": "What does print('Hello') do?",
+          "options": [
+            "Stores a value",
+            "Displays text output",
+            "Reads keyboard input",
+            "Defines a function"
+          ],
+          "answer_index": 1,
+          "explanation": "print outputs text to the console."
+        },
+        {
+          "id": "CLO1-M20",
+          "question": "Which best describes repetition in programming?",
+          "options": [
+            "Running steps once",
+            "Running steps multiple times",
+            "Deleting code blocks",
+            "Renaming variables"
+          ],
+          "answer_index": 1,
+          "explanation": "Repetition means looped execution of steps."
+        }
+      ],
+      "coding_exercises": [
+        {
+          "id": "CLO1-C1",
+          "title": "Positive, Negative, or Zero",
+          "prompt": "Write a function classify_number(n) that returns 'positive', 'negative', or 'zero' based on n.",
+          "starter_code": "def classify_number(n):\n    # your code here\n    pass",
+          "function_name": "classify_number",
+          "hints": [
+            "This is a decision-structure problem with three outcomes.",
+            "Check n > 0 first, then n < 0, and handle the remaining case.",
+            "Return exact lowercase strings: 'positive', 'negative', or 'zero'."
+          ],
+          "tests": [
+            {
+              "args": [
+                8
+              ],
+              "expected": "positive"
+            },
+            {
+              "args": [
+                -3
+              ],
+              "expected": "negative"
+            },
+            {
+              "args": [
+                0
+              ],
+              "expected": "zero"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CLO2",
+      "title": "Data Types, Variables, and Basic Operations",
+      "summary": [
+        "Week 3 covers Python data types and variable usage for storing and manipulating information.",
+        "Students distinguish numeric, string, and boolean types and practice conversions where needed.",
+        "Week 4 focuses on arithmetic and basic operations to build expressions and compute outputs correctly."
+      ],
+      "videos": [
+        {
+          "title": "Week 3: Data Types and Variables (Video 1)",
+          "url": "https://youtu.be/RftLP6PYDxg"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 2)",
+          "url": "https://youtu.be/Mv28cAYLZ6M"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 3)",
+          "url": "https://youtu.be/-6eHgXiDuNg"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 4)",
+          "url": "https://youtu.be/HcI0DfgZAaU"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 5)",
+          "url": "https://youtu.be/VHlqi_pRDN8"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 6)",
+          "url": "https://youtu.be/P5z_NVX4O9o"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 7)",
+          "url": "https://youtu.be/6U-f9jZDHRc"
+        },
+        {
+          "title": "Week 3: Data Types and Variables (Video 8)",
+          "url": "https://youtu.be/kDr75hyI3jE"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 1)",
+          "url": "https://youtu.be/Z-MR9MVEtxY"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 2)",
+          "url": "https://youtu.be/K2bM0zcCGH8"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 3)",
+          "url": "https://youtu.be/4ZL3pPXWSkw"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 4)",
+          "url": "https://youtu.be/5wDJS8rm5xI"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 5)",
+          "url": "https://youtu.be/9ODAShRgBCI"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 6)",
+          "url": "https://youtu.be/VI-m7EBnj6A"
+        },
+        {
+          "title": "Week 4: Basic Operations (Video 7)",
+          "url": "https://youtu.be/m7kY7tk9HjY"
+        }
+      ],
+      "mcq": [
+        {
+          "id": "CLO2-M1",
+          "question": "Which Python operator is used for exponentiation?",
+          "options": [
+            "^",
+            "**",
+            "%",
+            "//"
+          ],
+          "answer_index": 1,
+          "explanation": "In Python, `**` computes powers (for example, 2**3 = 8)."
+        },
+        {
+          "id": "CLO2-M2",
+          "question": "What does int('12') return?",
+          "options": [
+            "'12'",
+            "12.0",
+            "12",
+            "TypeError"
+          ],
+          "answer_index": 2,
+          "explanation": "int('12') converts the string to the integer value 12."
+        },
+        {
+          "id": "CLO2-M3",
+          "question": "Which built-in type stores decimal numbers in Python?",
+          "options": [
+            "int",
+            "float",
+            "str",
+            "bool"
+          ],
+          "answer_index": 1,
+          "explanation": "float represents real/decimal values."
+        },
+        {
+          "id": "CLO2-M4",
+          "question": "What is the result of 7 // 2 in Python?",
+          "options": [
+            "3",
+            "3.5",
+            "4",
+            "1"
+          ],
+          "answer_index": 0,
+          "explanation": "// performs floor division, so 7 // 2 is 3."
+        },
+        {
+          "id": "CLO2-M5",
+          "question": "What does 7 % 2 return?",
+          "options": [
+            "3",
+            "1",
+            "2",
+            "0"
+          ],
+          "answer_index": 1,
+          "explanation": "The modulo operator returns remainder 1."
+        },
+        {
+          "id": "CLO2-M6",
+          "question": "Which conversion turns 3.9 into 3?",
+          "options": [
+            "str(3.9)",
+            "float(3.9)",
+            "int(3.9)",
+            "bool(3.9)"
+          ],
+          "answer_index": 2,
+          "explanation": "int() truncates the decimal part toward zero."
+        },
+        {
+          "id": "CLO2-M7",
+          "question": "What is the type of '42' in Python?",
+          "options": [
+            "int",
+            "float",
+            "str",
+            "bool"
+          ],
+          "answer_index": 2,
+          "explanation": "Quoted text literals are strings."
+        },
+        {
+          "id": "CLO2-M8",
+          "question": "Which expression evaluates to True?",
+          "options": [
+            "bool(0)",
+            "bool('')",
+            "bool(1)",
+            "bool([])"
+          ],
+          "answer_index": 2,
+          "explanation": "Non-zero numbers are truthy, so bool(1) is True."
+        },
+        {
+          "id": "CLO2-M9",
+          "question": "What does round(3.6) return in Python?",
+          "options": [
+            "3",
+            "4",
+            "3.5",
+            "Error"
+          ],
+          "answer_index": 1,
+          "explanation": "round(3.6) rounds to nearest integer 4."
+        },
+        {
+          "id": "CLO2-M10",
+          "question": "Which operator has higher precedence?",
+          "options": [
+            "+",
+            "*",
+            "Both equal",
+            "Depends on variable name"
+          ],
+          "answer_index": 1,
+          "explanation": "Multiplication has higher precedence than addition."
+        },
+        {
+          "id": "CLO2-M11",
+          "question": "What is the result of '3' + '4'?",
+          "options": [
+            "7",
+            "34",
+            "3 4",
+            "Error always"
+          ],
+          "answer_index": 1,
+          "explanation": "String + string concatenates text into '34'."
+        },
+        {
+          "id": "CLO2-M12",
+          "question": "Which statement correctly assigns a value to x?",
+          "options": [
+            "x := 5",
+            "let x = 5",
+            "x = 5",
+            "set x 5"
+          ],
+          "answer_index": 2,
+          "explanation": "Python assignment uses the = operator."
+        },
+        {
+          "id": "CLO2-M13",
+          "question": "What is produced by type(True).__name__?",
+          "options": [
+            "int",
+            "boolean",
+            "bool",
+            "str"
+          ],
+          "answer_index": 2,
+          "explanation": "Python boolean type name is bool."
+        },
+        {
+          "id": "CLO2-M14",
+          "question": "Which operation changes a number to text?",
+          "options": [
+            "int()",
+            "float()",
+            "str()",
+            "abs()"
+          ],
+          "answer_index": 2,
+          "explanation": "str() converts values to their string representation."
+        },
+        {
+          "id": "CLO2-M15",
+          "question": "What is the value of 2 + 3 * 4?",
+          "options": [
+            "20",
+            "14",
+            "24",
+            "10"
+          ],
+          "answer_index": 1,
+          "explanation": "Multiplication first gives 12, then plus 2 gives 14."
+        },
+        {
+          "id": "CLO2-M16",
+          "question": "Which type is suitable for storing a person's age?",
+          "options": [
+            "int",
+            "str",
+            "bool",
+            "None"
+          ],
+          "answer_index": 0,
+          "explanation": "Age is commonly represented as an integer value."
+        },
+        {
+          "id": "CLO2-M17",
+          "question": "If x = 5, what is x += 2 equivalent to?",
+          "options": [
+            "x = x - 2",
+            "x = 2",
+            "x = x + 2",
+            "x = x * 2"
+          ],
+          "answer_index": 2,
+          "explanation": "The += operator adds to the existing value."
+        },
+        {
+          "id": "CLO2-M18",
+          "question": "What does float('5') return?",
+          "options": [
+            "5",
+            "5.0",
+            "'5.0'",
+            "TypeError"
+          ],
+          "answer_index": 1,
+          "explanation": "float() converts numeric string to decimal number 5.0."
+        },
+        {
+          "id": "CLO2-M19",
+          "question": "Which value is falsy in Python?",
+          "options": [
+            "'0'",
+            "1",
+            "[]",
+            "'False'"
+          ],
+          "answer_index": 2,
+          "explanation": "An empty list is falsy."
+        },
+        {
+          "id": "CLO2-M20",
+          "question": "What does abs(-8) return?",
+          "options": [
+            "-8",
+            "8",
+            "0",
+            "Error"
+          ],
+          "answer_index": 1,
+          "explanation": "abs returns the non-negative magnitude."
+        }
+      ],
+      "coding_exercises": [
+        {
+          "id": "CLO2-C1",
+          "title": "Compute Expression",
+          "prompt": "Write a function compute(a, b) that returns (a + b) * (a - b).",
+          "starter_code": "def compute(a, b):\n    # your code here\n    pass",
+          "function_name": "compute",
+          "hints": [
+            "Break the formula into two parts: sum part and difference part.",
+            "Use parentheses to preserve the intended order of operations.",
+            "Return the final multiplication result; do not print it."
+          ],
+          "tests": [
+            {
+              "args": [
+                5,
+                2
+              ],
+              "expected": 21
+            },
+            {
+              "args": [
+                10,
+                10
+              ],
+              "expected": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CLO3",
+      "title": "Control Statements and Functions",
+      "summary": [
+        "Weeks 5 and 6 develop control flow using if/elif/else, loops, and nested logic patterns.",
+        "Week 7 introduces function design with parameters, return values, and decomposition.",
+        "Week 8 extends to advanced function usage and better code reuse practices."
+      ],
+      "videos": [
+        {
+          "title": "Week 5: Control Statements (Video 1)",
+          "url": "https://youtu.be/YQbdkfrCxRg"
+        },
+        {
+          "title": "Week 5: Control Statements (Video 2)",
+          "url": "https://youtu.be/2S3PK23tSAg"
+        },
+        {
+          "title": "Week 5: Control Statements (Video 3)",
+          "url": "https://youtu.be/YB9V4_m8u3I"
+        },
+        {
+          "title": "Week 5: Control Statements (Video 4)",
+          "url": "https://youtu.be/1-vJ9i5ynOc"
+        },
+        {
+          "title": "Week 5: Control Statements (Video 5)",
+          "url": "https://youtu.be/C6xWxW4EpaU"
+        },
+        {
+          "title": "Week 5: Control Statements (Video 6)",
+          "url": "https://youtu.be/cbHMdMwQvqo"
+        },
+        {
+          "title": "Week 6: Advanced Control Statements (Video 1)",
+          "url": "https://youtu.be/hyksDJNI8bQ"
+        },
+        {
+          "title": "Week 6: Advanced Control Statements (Video 2)",
+          "url": "https://youtu.be/4pwWTbHCEIY"
+        },
+        {
+          "title": "Week 6: Advanced Control Statements (Video 3)",
+          "url": "https://youtu.be/-f4mgDzg2AA"
+        },
+        {
+          "title": "Week 6: Advanced Control Statements (Video 4)",
+          "url": "https://youtu.be/J4SQT_9ThUM"
+        },
+        {
+          "title": "Week 6: Advanced Control Statements (Video 5)",
+          "url": "https://youtu.be/76uYqELGIpk"
+        },
+        {
+          "title": "Week 7: Functions (Video 1)",
+          "url": "https://youtu.be/3-FahPctyVQ"
+        },
+        {
+          "title": "Week 7: Functions (Video 2)",
+          "url": "https://youtu.be/UCswAFoZR5I"
+        },
+        {
+          "title": "Week 7: Functions (Video 3)",
+          "url": "https://youtu.be/42N-wryzJnk"
+        },
+        {
+          "title": "Week 7: Functions (Video 4)",
+          "url": "https://youtu.be/Xsb8RRk3w9s"
+        },
+        {
+          "title": "Week 7: Functions (Video 5)",
+          "url": "https://youtu.be/krzPs9JBadM"
+        },
+        {
+          "title": "Week 8: Advanced Functions (Video 1)",
+          "url": "https://youtu.be/WTPygKA_Qig"
+        },
+        {
+          "title": "Week 8: Advanced Functions (Video 2)",
+          "url": "https://youtu.be/tE844IuFajY"
+        },
+        {
+          "title": "Week 8: Advanced Functions (Video 3)",
+          "url": "https://youtu.be/Dkv7iWDEEmo"
+        },
+        {
+          "title": "Week 8: Advanced Functions (Video 4)",
+          "url": "https://youtu.be/mYpJ8A6xk-U"
+        },
+        {
+          "title": "Week 8: Advanced Functions (Video 5)",
+          "url": "https://youtu.be/z99z-F1h-wk"
+        }
+      ],
+      "mcq": [
+        {
+          "id": "CLO3-M1",
+          "question": "Which keyword exits a loop immediately?",
+          "options": [
+            "continue",
+            "break",
+            "return",
+            "pass"
+          ],
+          "answer_index": 1,
+          "explanation": "break terminates the nearest enclosing loop."
+        },
+        {
+          "id": "CLO3-M2",
+          "question": "Why are functions useful in programming?",
+          "options": [
+            "They make code run infinitely",
+            "They remove the need for variables",
+            "They improve reuse and modularity",
+            "They replace control statements"
+          ],
+          "answer_index": 2,
+          "explanation": "Functions help organize logic and avoid repetition."
+        },
+        {
+          "id": "CLO3-M3",
+          "question": "Which loop is best when number of iterations is known?",
+          "options": [
+            "while",
+            "for",
+            "try",
+            "def"
+          ],
+          "answer_index": 1,
+          "explanation": "A for loop is commonly used for bounded iteration."
+        },
+        {
+          "id": "CLO3-M4",
+          "question": "What does continue do inside a loop?",
+          "options": [
+            "Exit loop",
+            "Skip to next iteration",
+            "Restart program",
+            "Define function"
+          ],
+          "answer_index": 1,
+          "explanation": "continue skips remaining body and moves to next iteration."
+        },
+        {
+          "id": "CLO3-M5",
+          "question": "Which keyword defines a function in Python?",
+          "options": [
+            "func",
+            "define",
+            "def",
+            "lambda"
+          ],
+          "answer_index": 2,
+          "explanation": "Functions are declared with def."
+        },
+        {
+          "id": "CLO3-M6",
+          "question": "What is returned if a function has no return statement?",
+          "options": [
+            "0",
+            "False",
+            "None",
+            "Empty string"
+          ],
+          "answer_index": 2,
+          "explanation": "Python functions return None by default."
+        },
+        {
+          "id": "CLO3-M7",
+          "question": "Which statement best describes parameters?",
+          "options": [
+            "Values sent when calling",
+            "Names in function definition",
+            "Always integers",
+            "Only optional"
+          ],
+          "answer_index": 1,
+          "explanation": "Parameters are variables listed in function definition."
+        },
+        {
+          "id": "CLO3-M8",
+          "question": "Arguments are:",
+          "options": [
+            "Variables in definition",
+            "Actual values passed to function",
+            "Always global",
+            "Only strings"
+          ],
+          "answer_index": 1,
+          "explanation": "Arguments are concrete values provided at call time."
+        },
+        {
+          "id": "CLO3-M9",
+          "question": "What does range(3) produce in a for loop?",
+          "options": [
+            "1,2,3",
+            "0,1,2",
+            "0,1,2,3",
+            "3 only"
+          ],
+          "answer_index": 1,
+          "explanation": "range(3) yields 0, 1, 2."
+        },
+        {
+          "id": "CLO3-M10",
+          "question": "Which is the correct if-elif-else order?",
+          "options": [
+            "else -> if -> elif",
+            "if -> elif -> else",
+            "elif -> if -> else",
+            "if -> else -> elif"
+          ],
+          "answer_index": 1,
+          "explanation": "Python conditional chain is if, optional elif, optional else."
+        },
+        {
+          "id": "CLO3-M11",
+          "question": "What is the purpose of return in a function?",
+          "options": [
+            "Print output only",
+            "Send value back to caller",
+            "Stop all programs",
+            "Import module"
+          ],
+          "answer_index": 1,
+          "explanation": "return passes computed results to the caller."
+        },
+        {
+          "id": "CLO3-M12",
+          "question": "A loop that never stops is usually caused by:",
+          "options": [
+            "Too many comments",
+            "Unchanging loop condition",
+            "Using def",
+            "Using range"
+          ],
+          "answer_index": 1,
+          "explanation": "Infinite loops occur when terminating condition never becomes false."
+        },
+        {
+          "id": "CLO3-M13",
+          "question": "What does pass do?",
+          "options": [
+            "Skips one iteration",
+            "Exits function",
+            "Acts as placeholder statement",
+            "Raises error"
+          ],
+          "answer_index": 2,
+          "explanation": "pass is a no-op used as a placeholder."
+        },
+        {
+          "id": "CLO3-M14",
+          "question": "Which scope typically contains variables defined inside a function?",
+          "options": [
+            "Global scope",
+            "Local scope",
+            "Module cache",
+            "Class path"
+          ],
+          "answer_index": 1,
+          "explanation": "Function variables are local unless declared otherwise."
+        },
+        {
+          "id": "CLO3-M15",
+          "question": "How many times does this run? for _ in range(2):",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "answer_index": 2,
+          "explanation": "range(2) produces two iterations."
+        },
+        {
+          "id": "CLO3-M16",
+          "question": "Which is better for reusable logic?",
+          "options": [
+            "Copy-pasting code",
+            "Functions",
+            "Long comments",
+            "Global variables everywhere"
+          ],
+          "answer_index": 1,
+          "explanation": "Functions improve reuse and maintainability."
+        },
+        {
+          "id": "CLO3-M17",
+          "question": "What happens when break executes in nested loop?",
+          "options": [
+            "Exits all loops",
+            "Exits nearest enclosing loop",
+            "Skips iteration",
+            "Ends script"
+          ],
+          "answer_index": 1,
+          "explanation": "break affects the nearest loop."
+        },
+        {
+          "id": "CLO3-M18",
+          "question": "A function can return multiple values by returning:",
+          "options": [
+            "A tuple",
+            "A comment",
+            "A loop",
+            "A module"
+          ],
+          "answer_index": 0,
+          "explanation": "Python returns multiple values via tuple packing."
+        },
+        {
+          "id": "CLO3-M19",
+          "question": "Which loop condition is checked before each iteration?",
+          "options": [
+            "for",
+            "while",
+            "def",
+            "return"
+          ],
+          "answer_index": 1,
+          "explanation": "while evaluates condition before each pass."
+        },
+        {
+          "id": "CLO3-M20",
+          "question": "Main goal of decomposition is to:",
+          "options": [
+            "Increase file size",
+            "Split problem into manageable functions",
+            "Remove testing",
+            "Avoid variables"
+          ],
+          "answer_index": 1,
+          "explanation": "Decomposition creates smaller, focused units of logic."
+        }
+      ],
+      "coding_exercises": [
+        {
+          "id": "CLO3-C1",
+          "title": "Factorial with Loop",
+          "prompt": "Write a function factorial(n) that returns n! for n >= 0.",
+          "starter_code": "def factorial(n):\n    # your code here\n    pass",
+          "function_name": "factorial",
+          "hints": [
+            "Initialize an accumulator variable before the loop.",
+            "Multiply the accumulator by each integer from 1 to n.",
+            "Remember that factorial(0) should be 1."
+          ],
+          "tests": [
+            {
+              "args": [
+                0
+              ],
+              "expected": 1
+            },
+            {
+              "args": [
+                5
+              ],
+              "expected": 120
+            },
+            {
+              "args": [
+                3
+              ],
+              "expected": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CLO4",
+      "title": "Exceptions, File Handling, and Visualization",
+      "summary": [
+        "Week 10 introduces exception handling and robust file input/output workflows.",
+        "Students practice writing safer programs using try/except and context managers.",
+        "Week 11 applies processed data to basic visualization concepts for communicating insights."
+      ],
+      "videos": [
+        {
+          "title": "Week 10: Exceptions and File Handling (Video 1)",
+          "url": "https://youtu.be/1b-r-6XrpEA"
+        },
+        {
+          "title": "Week 10: Exceptions and File Handling (Video 2)",
+          "url": "https://youtu.be/ty5maaJijRc"
+        },
+        {
+          "title": "Week 10: Exceptions and File Handling (Video 3)",
+          "url": "https://youtu.be/2A4xSUbJWzA"
+        },
+        {
+          "title": "Week 10: Exceptions and File Handling (Video 4)",
+          "url": "https://youtu.be/GO94M8LzW1Q"
+        },
+        {
+          "title": "Week 10: Exceptions and File Handling (Video 5)",
+          "url": "https://youtu.be/mGxiMwQI0ds"
+        },
+        {
+          "title": "Week 10: Exceptions and File Handling (Video 6)",
+          "url": "https://youtu.be/5u7V3ClmWZM"
+        },
+        {
+          "title": "Week 11: Data Visualization (Video 1)",
+          "url": "https://youtu.be/qQDKLqOEp9g"
+        },
+        {
+          "title": "Week 11: Data Visualization (Video 2)",
+          "url": "https://youtu.be/t45W5qTqiCo"
+        },
+        {
+          "title": "Week 11: Data Visualization (Video 3)",
+          "url": "https://youtu.be/fUY9qmvR-_U"
+        },
+        {
+          "title": "Week 11: Data Visualization (Video 4)",
+          "url": "https://youtu.be/ejAqDvYerPQ"
+        },
+        {
+          "title": "Week 11: Data Visualization (Video 5)",
+          "url": "https://youtu.be/ZLnhvekrMsY"
+        }
+      ],
+      "mcq": [
+        {
+          "id": "CLO4-M1",
+          "question": "What is the main benefit of using try/except?",
+          "options": [
+            "It prevents all bugs",
+            "It allows graceful handling of runtime errors",
+            "It makes loops faster",
+            "It removes the need for testing"
+          ],
+          "answer_index": 1,
+          "explanation": "try/except helps programs continue or fail gracefully with useful feedback."
+        },
+        {
+          "id": "CLO4-M2",
+          "question": "What does `with open('file.txt') as f:` ensure?",
+          "options": [
+            "The file is always empty",
+            "The file is auto-closed after use",
+            "The file is converted to JSON",
+            "The file cannot raise exceptions"
+          ],
+          "answer_index": 1,
+          "explanation": "A context manager safely closes the file, even when errors occur."
+        },
+        {
+          "id": "CLO4-M3",
+          "question": "Which exception commonly occurs when dividing by zero?",
+          "options": [
+            "TypeError",
+            "ZeroDivisionError",
+            "IndexError",
+            "ValueError"
+          ],
+          "answer_index": 1,
+          "explanation": "Division by zero raises ZeroDivisionError."
+        },
+        {
+          "id": "CLO4-M4",
+          "question": "Why use except blocks?",
+          "options": [
+            "To hide all errors forever",
+            "To handle specific runtime errors",
+            "To speed file reading",
+            "To replace if statements"
+          ],
+          "answer_index": 1,
+          "explanation": "except catches and handles expected error cases."
+        },
+        {
+          "id": "CLO4-M5",
+          "question": "Which keyword can run code whether exception occurs or not?",
+          "options": [
+            "final",
+            "finally",
+            "default",
+            "ensure"
+          ],
+          "answer_index": 1,
+          "explanation": "finally executes cleanup regardless of exceptions."
+        },
+        {
+          "id": "CLO4-M6",
+          "question": "What mode opens a file for reading text?",
+          "options": [
+            "'w'",
+            "'a'",
+            "'r'",
+            "'x'"
+          ],
+          "answer_index": 2,
+          "explanation": "Mode 'r' opens file for reading."
+        },
+        {
+          "id": "CLO4-M7",
+          "question": "What does mode 'w' do when file exists?",
+          "options": [
+            "Appends to file",
+            "Reads only",
+            "Overwrites file",
+            "Raises always"
+          ],
+          "answer_index": 2,
+          "explanation": "'w' truncates existing file before writing."
+        },
+        {
+          "id": "CLO4-M8",
+          "question": "Which mode appends data to end of file?",
+          "options": [
+            "'r'",
+            "'a'",
+            "'w'",
+            "'rw'"
+          ],
+          "answer_index": 1,
+          "explanation": "Append mode 'a' writes at end without truncating."
+        },
+        {
+          "id": "CLO4-M9",
+          "question": "Why is with open(...) preferred?",
+          "options": [
+            "Shorter variable names",
+            "Automatic resource management",
+            "No exceptions possible",
+            "Faster network"
+          ],
+          "answer_index": 1,
+          "explanation": "Context managers close files automatically and safely."
+        },
+        {
+          "id": "CLO4-M10",
+          "question": "A ValueError often indicates:",
+          "options": [
+            "Missing file path",
+            "Wrong value format/type for operation",
+            "Loop ended",
+            "Syntax warning only"
+          ],
+          "answer_index": 1,
+          "explanation": "ValueError means valid type but inappropriate value."
+        },
+        {
+          "id": "CLO4-M11",
+          "question": "Which function reads all lines as a list?",
+          "options": [
+            "readline()",
+            "read()",
+            "readlines()",
+            "write()"
+          ],
+          "answer_index": 2,
+          "explanation": "readlines() returns a list of lines."
+        },
+        {
+          "id": "CLO4-M12",
+          "question": "Which matplotlib chart is common for trends over time?",
+          "options": [
+            "Pie chart",
+            "Line chart",
+            "Histogram only",
+            "Table"
+          ],
+          "answer_index": 1,
+          "explanation": "Line charts are common for time-series trends."
+        },
+        {
+          "id": "CLO4-M13",
+          "question": "What is a key purpose of visualization?",
+          "options": [
+            "Reduce data size to zero",
+            "Communicate patterns and insights",
+            "Avoid analysis",
+            "Replace files"
+          ],
+          "answer_index": 1,
+          "explanation": "Visualization helps interpret and communicate data effectively."
+        },
+        {
+          "id": "CLO4-M14",
+          "question": "Which block contains code that may raise an exception?",
+          "options": [
+            "except",
+            "try",
+            "finally",
+            "raise"
+          ],
+          "answer_index": 1,
+          "explanation": "Potentially failing code goes inside try block."
+        },
+        {
+          "id": "CLO4-M15",
+          "question": "What does raise do in Python?",
+          "options": [
+            "Prints output",
+            "Creates a loop",
+            "Triggers an exception",
+            "Closes files"
+          ],
+          "answer_index": 2,
+          "explanation": "raise explicitly throws an exception."
+        },
+        {
+          "id": "CLO4-M16",
+          "question": "If file path is wrong, open(...) may raise:",
+          "options": [
+            "FileNotFoundError",
+            "KeyError",
+            "NameError",
+            "AssertionError"
+          ],
+          "answer_index": 0,
+          "explanation": "Invalid path often raises FileNotFoundError."
+        },
+        {
+          "id": "CLO4-M17",
+          "question": "What should you do before plotting data?",
+          "options": [
+            "Delete outliers blindly",
+            "Prepare and validate data",
+            "Always use pie chart",
+            "Convert all to strings"
+          ],
+          "answer_index": 1,
+          "explanation": "Good visualization depends on clean, validated data."
+        },
+        {
+          "id": "CLO4-M18",
+          "question": "Which method writes text to an open file object f?",
+          "options": [
+            "f.read(text)",
+            "f.write(text)",
+            "f.readlines(text)",
+            "f.append(text)"
+          ],
+          "answer_index": 1,
+          "explanation": "write() outputs text to the file."
+        },
+        {
+          "id": "CLO4-M19",
+          "question": "Best practice when handling exceptions is to:",
+          "options": [
+            "Catch broad exceptions always",
+            "Catch specific exceptions where possible",
+            "Ignore exception messages",
+            "Retry infinitely"
+          ],
+          "answer_index": 1,
+          "explanation": "Specific exception handling improves clarity and safety."
+        },
+        {
+          "id": "CLO4-M20",
+          "question": "Visualization helps decision-making because it:",
+          "options": [
+            "Guarantees correctness",
+            "Makes patterns easier to detect",
+            "Removes uncertainty completely",
+            "Eliminates need for domain knowledge"
+          ],
+          "answer_index": 1,
+          "explanation": "Charts make structure, trends, and anomalies easier to observe."
+        }
+      ],
+      "coding_exercises": [
+        {
+          "id": "CLO4-C1",
+          "title": "Safe Division",
+          "prompt": "Write a function safe_divide(a, b) that returns a / b, or None if division is invalid.",
+          "starter_code": "def safe_divide(a, b):\n    # your code here\n    pass",
+          "function_name": "safe_divide",
+          "hints": [
+            "Division by zero should be handled, not crash the program.",
+            "Use try/except around the division statement.",
+            "Return None when an exception case is triggered."
+          ],
+          "tests": [
+            {
+              "args": [
+                10,
+                2
+              ],
+              "expected": 5.0
+            },
+            {
+              "args": [
+                8,
+                0
+              ],
+              "expected": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CLO5",
+      "title": "Applied Numerical and Hardware-Oriented Programming",
+      "summary": [
+        "Week 12 introduces interpolation and curve fitting for modeling real data behavior.",
+        "Week 13 focuses on mathematical computation workflows in Python.",
+        "Week 14 extends learning to microcontroller interfacing as an applied programming context."
+      ],
+      "videos": [
+        {
+          "title": "Week 12: Interpolation and Curve Fitting (Video 1)",
+          "url": "https://youtu.be/UwDPygfiQqM"
+        },
+        {
+          "title": "Week 13: Mathematical Computations (Video 1)",
+          "url": "https://youtu.be/Nb_91erhUt4"
+        }
+      ],
+      "mcq": [
+        {
+          "id": "CLO5-M1",
+          "question": "What is interpolation mainly used for?",
+          "options": [
+            "Encrypting Python files",
+            "Estimating values between known data points",
+            "Replacing loops",
+            "Compiling hardware drivers"
+          ],
+          "answer_index": 1,
+          "explanation": "Interpolation predicts intermediate values within existing data."
+        },
+        {
+          "id": "CLO5-M2",
+          "question": "Why is computational modeling useful in applied programming?",
+          "options": [
+            "It avoids using data",
+            "It helps analyze and predict real-world behavior",
+            "It only applies to web development",
+            "It replaces all experiments"
+          ],
+          "answer_index": 1,
+          "explanation": "Modeling turns measured data into insights for analysis and decision-making."
+        },
+        {
+          "id": "CLO5-M3",
+          "question": "What does linear interpolation estimate?",
+          "options": [
+            "Value between two known points",
+            "Area under curve only",
+            "Random value",
+            "Derivative at endpoint"
+          ],
+          "answer_index": 0,
+          "explanation": "Interpolation estimates intermediate values from known data points."
+        },
+        {
+          "id": "CLO5-M4",
+          "question": "In y = mx + c, m represents:",
+          "options": [
+            "Intercept",
+            "Slope",
+            "Error term",
+            "Sample size"
+          ],
+          "answer_index": 1,
+          "explanation": "m is slope (rate of change)."
+        },
+        {
+          "id": "CLO5-M5",
+          "question": "Curve fitting is mainly used to:",
+          "options": [
+            "Encrypt sensor data",
+            "Find model that best matches data",
+            "Compile microcontroller code",
+            "Replace measurements"
+          ],
+          "answer_index": 1,
+          "explanation": "Curve fitting approximates relationships in observed data."
+        },
+        {
+          "id": "CLO5-M6",
+          "question": "Which library is widely used for numerical arrays in Python?",
+          "options": [
+            "re",
+            "numpy",
+            "json",
+            "random"
+          ],
+          "answer_index": 1,
+          "explanation": "NumPy provides efficient numerical array operations."
+        },
+        {
+          "id": "CLO5-M7",
+          "question": "Why use computational models?",
+          "options": [
+            "To avoid assumptions",
+            "To simulate and analyze behavior",
+            "To remove all uncertainty",
+            "Only to draw diagrams"
+          ],
+          "answer_index": 1,
+          "explanation": "Models support prediction and analysis under assumptions."
+        },
+        {
+          "id": "CLO5-M8",
+          "question": "A fitted model should be evaluated by:",
+          "options": [
+            "Visual fit and error metrics",
+            "File size only",
+            "Variable names",
+            "Number of comments"
+          ],
+          "answer_index": 0,
+          "explanation": "Model quality is checked via residuals/errors and visual agreement."
+        },
+        {
+          "id": "CLO5-M9",
+          "question": "What is a common risk of overfitting?",
+          "options": [
+            "Poor training fit",
+            "Poor generalization to new data",
+            "No parameters",
+            "Lower computation always"
+          ],
+          "answer_index": 1,
+          "explanation": "Overfitted models memorize noise and generalize poorly."
+        },
+        {
+          "id": "CLO5-M10",
+          "question": "Interpolation typically applies:",
+          "options": [
+            "Outside known range",
+            "Within known range",
+            "Only for integers",
+            "Only with hardware"
+          ],
+          "answer_index": 1,
+          "explanation": "Interpolation is generally for values inside the observed domain."
+        },
+        {
+          "id": "CLO5-M11",
+          "question": "Extrapolation differs from interpolation because it:",
+          "options": [
+            "Uses no data",
+            "Estimates beyond known data range",
+            "Always more accurate",
+            "Needs no model"
+          ],
+          "answer_index": 1,
+          "explanation": "Extrapolation predicts outside measured range and is riskier."
+        },
+        {
+          "id": "CLO5-M12",
+          "question": "Why is unit consistency important in computations?",
+          "options": [
+            "Improves font rendering",
+            "Prevents invalid numeric conclusions",
+            "Avoids loops",
+            "Enables comments"
+          ],
+          "answer_index": 1,
+          "explanation": "Inconsistent units can make results meaningless."
+        },
+        {
+          "id": "CLO5-M13",
+          "question": "In hardware interfacing, sensor readings are often:",
+          "options": [
+            "Always text",
+            "Numerical values needing processing",
+            "Executable files",
+            "Boolean only"
+          ],
+          "answer_index": 1,
+          "explanation": "Sensors commonly produce numeric streams for analysis."
+        },
+        {
+          "id": "CLO5-M14",
+          "question": "Which step is essential before using measured data?",
+          "options": [
+            "Calibration/validation",
+            "Immediate plotting only",
+            "Delete missing rows always",
+            "Convert to hex"
+          ],
+          "answer_index": 0,
+          "explanation": "Calibration and validation improve measurement reliability."
+        },
+        {
+          "id": "CLO5-M15",
+          "question": "A good computational workflow usually includes:",
+          "options": [
+            "Input, process, output",
+            "Only output",
+            "Only loops",
+            "Only hardware setup"
+          ],
+          "answer_index": 0,
+          "explanation": "Core workflow is data input, processing, and output/interpretation."
+        },
+        {
+          "id": "CLO5-M16",
+          "question": "What does a residual represent in model fitting?",
+          "options": [
+            "Model parameter",
+            "Difference between observed and predicted",
+            "Input unit",
+            "Slope"
+          ],
+          "answer_index": 1,
+          "explanation": "Residual = observed value minus predicted value."
+        },
+        {
+          "id": "CLO5-M17",
+          "question": "Which plot can compare measured and predicted values?",
+          "options": [
+            "Scatter/line overlay",
+            "Only pie chart",
+            "Only histogram",
+            "Text file"
+          ],
+          "answer_index": 0,
+          "explanation": "Overlay plots help assess model agreement with data."
+        },
+        {
+          "id": "CLO5-M18",
+          "question": "Why is numerical stability important?",
+          "options": [
+            "Prevents round-off related errors",
+            "Makes code longer",
+            "Removes need for testing",
+            "For color themes"
+          ],
+          "answer_index": 0,
+          "explanation": "Stable methods reduce sensitivity to floating-point issues."
+        },
+        {
+          "id": "CLO5-M19",
+          "question": "Microcontroller programming in this context is valuable because:",
+          "options": [
+            "It links software with real-world signals",
+            "It replaces all simulations",
+            "No debugging needed",
+            "It is only theoretical"
+          ],
+          "answer_index": 0,
+          "explanation": "It connects programs to physical sensors/actuators."
+        },
+        {
+          "id": "CLO5-M20",
+          "question": "Best interpretation of model output is:",
+          "options": [
+            "Accept blindly",
+            "Compare with context, assumptions, and error",
+            "Ignore units",
+            "Use only one data point"
+          ],
+          "answer_index": 1,
+          "explanation": "Model results must be interpreted alongside assumptions and uncertainty."
+        }
+      ],
+      "coding_exercises": [
+        {
+          "id": "CLO5-C1",
+          "title": "Linear Interpolation",
+          "prompt": "Write a function lerp(x0, y0, x1, y1, x) that returns the interpolated y value at x.",
+          "starter_code": "def lerp(x0, y0, x1, y1, x):\n    # your code here\n    pass",
+          "function_name": "lerp",
+          "hints": [
+            "Use the line interpolation formula with ratio (x - x0) / (x1 - x0).",
+            "Compute y0 + ratio * (y1 - y0).",
+            "Be careful with operator precedence; use parentheses clearly."
+          ],
+          "tests": [
+            {
+              "args": [
+                0,
+                0,
+                10,
+                100,
+                5
+              ],
+              "expected": 50.0
+            },
+            {
+              "args": [
+                2,
+                4,
+                6,
+                12,
+                3
+              ],
+              "expected": 6.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
