@@ -119,11 +119,16 @@ def simplify_function_code_header(code: str, function_name: str | None) -> str:
             continue
         normalized_body_lines.append(line[dedent_amount:])
 
-    normalized_body = "\n".join(normalized_body_lines).strip("\n")
-    if not normalized_body.strip():
-        normalized_body = "    pass"
+    dedented_body = "\n".join(normalized_body_lines).strip("\n")
+    if not dedented_body.strip():
+        dedented_body = "pass"
 
-    return f"def {normalized_function_name}({params}):\n{normalized_body}"
+    indented_body = "\n".join(
+        f"    {line}" if line else ""
+        for line in dedented_body.split("\n")
+    )
+
+    return f"def {normalized_function_name}({params}):\n{indented_body}"
 
 
 def simplify_exercise_prompt(prompt: str, function_name: str | None) -> str:

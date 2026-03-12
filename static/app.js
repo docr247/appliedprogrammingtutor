@@ -212,7 +212,10 @@ function buildHintLadder(container, hint) {
     return;
   }
 
-  const rawSentences = hint.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+  const rawSentences = hint
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
   const sentences = rawSentences.length > 0 ? rawSentences : [hint];
   let revealed = 1;
 
@@ -225,7 +228,8 @@ function buildHintLadder(container, hint) {
 
   function updateDisplay() {
     hintText.textContent = `Hint: ${sentences.slice(0, revealed).join(" ")}`;
-    showMoreBtn.style.display = revealed >= sentences.length ? "none" : "inline-block";
+    showMoreBtn.style.display =
+      revealed >= sentences.length ? "none" : "inline-block";
   }
 
   showMoreBtn.onclick = () => {
@@ -910,10 +914,24 @@ function renderMcq() {
       wrongLine.textContent = `You chose: ${result.selected_option_text}`;
       feedback.appendChild(wrongLine);
 
-      const correctLine = document.createElement("p");
-      correctLine.className = "mcq-correct-choice";
-      correctLine.textContent = `Correct answer: ${result.correct_option_text}`;
-      feedback.appendChild(correctLine);
+      if (result.correct_option_text) {
+        const revealAnswerBtn = document.createElement("button");
+        revealAnswerBtn.className = "hint-more-btn";
+        revealAnswerBtn.textContent = "Show answer";
+
+        const correctLine = document.createElement("p");
+        correctLine.className = "mcq-correct-choice";
+        correctLine.textContent = `Correct answer: ${result.correct_option_text}`;
+        correctLine.style.display = "none";
+
+        revealAnswerBtn.onclick = () => {
+          correctLine.style.display = "block";
+          revealAnswerBtn.remove();
+        };
+
+        feedback.appendChild(revealAnswerBtn);
+        feedback.appendChild(correctLine);
+      }
     }
 
     const msgLine = document.createElement("p");
@@ -921,13 +939,18 @@ function renderMcq() {
     msgLine.textContent = `${result.message} ${result.explanation}`;
     feedback.appendChild(msgLine);
 
-    submitBtn.disabled = true;
-    card.querySelectorAll(`input[name="${question.id}"]`).forEach((input) => {
-      input.disabled = true;
-    });
-    renderConfidenceRating(card, clo.id, result.correct, () => {
-      nextBtn.style.display = "inline-block";
-    });
+    if (result.correct) {
+      submitBtn.disabled = true;
+      card.querySelectorAll(`input[name="${question.id}"]`).forEach((input) => {
+        input.disabled = true;
+      });
+      renderConfidenceRating(card, clo.id, true, () => {
+        nextBtn.style.display = "inline-block";
+      });
+    } else {
+      nextBtn.style.display = "none";
+      renderConfidenceRating(card, clo.id, false, null);
+    }
   };
 
   nextBtn.onclick = () => {
@@ -1041,18 +1064,24 @@ function simplifyFunctionCodeHeader(code, functionName) {
     ? Math.min(...nonEmptyBodyIndents)
     : functionIndentLength + 4;
 
-  const normalizedBody = bodyLines
+  const dedentedBody = bodyLines
     .map((line) => {
       if (!line.trim()) {
         return "";
       }
       return line.slice(Math.min(dedentAmount, line.length));
     })
-    .join("\n");
+    .join("\n")
+    .replace(/^\n+|\n+$/g, "");
 
-  if (!normalizedBody.trim()) {
+  if (!dedentedBody.trim()) {
     return `def ${normalizedFunctionName}(${params}):\n    pass`;
   }
+
+  const normalizedBody = dedentedBody
+    .split("\n")
+    .map((line) => (line ? `    ${line}` : ""))
+    .join("\n");
 
   return `def ${normalizedFunctionName}(${params}):\n${normalizedBody}`;
 }
