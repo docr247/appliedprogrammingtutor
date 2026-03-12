@@ -242,6 +242,38 @@ body {
   margin-bottom: 16px;
 }
 
+.learning-insights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.insight-item {
+  border: 1px solid #dbeafe;
+  background: #f8fbff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.insight-label {
+  font-size: 0.8rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.insight-item strong {
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.insight-review {
+  border-color: #bfdbfe;
+}
+
 .tab {
   border: none;
   background: #e2e8f0;
@@ -611,6 +643,10 @@ body {
 }
 
 @media (max-width: 640px) {
+  .learning-insights {
+    grid-template-columns: 1fr;
+  }
+
   .videos-grid {
     grid-template-columns: 1fr;
   }

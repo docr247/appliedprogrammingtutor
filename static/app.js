@@ -7,7 +7,11 @@ const state = {
   mcqProgressByClo: {},
   codeProgressByClo: {},
   revealedSolutions: {},
+  masteryByClo: {},
 };
+
+const MASTERY_STORAGE_KEY = "apt_mastery_progress_v1";
+const REVIEW_INTERVAL_DAYS = [1, 3, 7, 14];
 
 const cloListEl = document.getElementById("clo-list");
 const cloTitleEl = document.getElementById("clo-title");
@@ -37,6 +41,123 @@ const panelMcqEl = document.getElementById("panel-mcq");
 const panelCodeEl = document.getElementById("panel-code");
 
 const submitCodeEl = document.getElementById("submit-code");
+const insightMasteryEl = document.getElementById("insight-mastery");
+const insightStreakEl = document.getElementById("insight-streak");
+const insightNextReviewEl = document.getElementById("insight-next-review");
+
+function toStartOfDay(date = new Date()) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function addDays(date, days) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + days);
+  return next;
+}
+
+function formatDateLabel(isoDate) {
+  if (!isoDate) {
+    return "Today";
+  }
+
+  const today = toStartOfDay();
+  const target = toStartOfDay(new Date(isoDate));
+  const diffDays = Math.round((target.getTime() - today.getTime()) / 86400000);
+
+  if (diffDays <= 0) {
+    return "Today";
+  }
+  if (diffDays === 1) {
+    return "Tomorrow";
+  }
+
+  return `${target.toLocaleDateString()} (${diffDays} days)`;
+}
+
+function loadMasteryProgress() {
+  try {
+    const raw = window.localStorage.getItem(MASTERY_STORAGE_KEY);
+    if (!raw) {
+      return {};
+    }
+
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") {
+      return {};
+    }
+
+    return parsed;
+  } catch {
+    return {};
+  }
+}
+
+function saveMasteryProgress() {
+  window.localStorage.setItem(
+    MASTERY_STORAGE_KEY,
+    JSON.stringify(state.masteryByClo),
+  );
+}
+
+function getMasteryRecord(cloId) {
+  if (!state.masteryByClo[cloId]) {
+    state.masteryByClo[cloId] = {
+      masteryScore: 0,
+      streak: 0,
+      successes: 0,
+      attempts: 0,
+      nextReviewDate: null,
+      lastUpdatedAt: null,
+    };
+  }
+
+  return state.masteryByClo[cloId];
+}
+
+function updateMasteryAfterAttempt(cloId, success) {
+  const record = getMasteryRecord(cloId);
+  record.attempts += 1;
+  if (success) {
+    record.successes += 1;
+    record.streak += 1;
+  } else {
+    record.streak = 0;
+  }
+
+  const masteryDelta = success ? 8 : -5;
+  record.masteryScore = Math.min(
+    100,
+    Math.max(0, record.masteryScore + masteryDelta),
+  );
+
+  const reviewStep = Math.min(
+    REVIEW_INTERVAL_DAYS.length - 1,
+    Math.max(0, record.streak - 1),
+  );
+  const intervalDays = success ? REVIEW_INTERVAL_DAYS[reviewStep] : 1;
+  const reviewDate = addDays(toStartOfDay(), intervalDays);
+  record.nextReviewDate = reviewDate.toISOString().slice(0, 10);
+  record.lastUpdatedAt = new Date().toISOString();
+
+  saveMasteryProgress();
+  renderLearningInsights();
+}
+
+function renderLearningInsights() {
+  if (!state.data) {
+    return;
+  }
+
+  const clo = getSelectedClo();
+  if (!clo) {
+    return;
+  }
+
+  const record = getMasteryRecord(clo.id);
+  insightMasteryEl.textContent = `${record.masteryScore}%`;
+  insightStreakEl.textContent = String(record.streak);
+  insightNextReviewEl.textContent = formatDateLabel(record.nextReviewDate);
+}
 
 function escapeHtml(value) {
   return value
@@ -450,6 +571,8 @@ function renderSummary() {
     li.textContent = item;
     summaryListEl.appendChild(li);
   });
+
+  renderLearningInsights();
 }
 
 function renderSlides() {
@@ -699,6 +822,7 @@ function renderMcq() {
     feedback.style.display = "block";
     feedback.className = `feedback ${result.correct ? "success" : "error"}`;
     feedback.textContent = `${result.message} ${result.explanation}`;
+    updateMasteryAfterAttempt(clo.id, result.correct);
     submitBtn.disabled = true;
     card.querySelectorAll(`input[name="${question.id}"]`).forEach((input) => {
       input.disabled = true;
@@ -1049,11 +1173,13 @@ submitCodeEl.addEventListener("click", async () => {
 
   if (success) {
     codeFeedbackEl.textContent = `${result.message} Attempts: ${result.attempts}.`;
+    updateMasteryAfterAttempt(clo.id, true);
     nextCodeEl.style.display = "inline-block";
     codeSolutionEl.style.display = "none";
     codeSolutionEl.textContent = "";
   } else {
     codeFeedbackEl.textContent = `${result.message} Hint: ${result.hint} (Attempt ${result.attempts})`;
+    updateMasteryAfterAttempt(clo.id, false);
     nextCodeEl.style.display = "none";
 
     if (result.attempts >= 5) {
@@ -1112,6 +1238,7 @@ tabCodeEl.addEventListener("click", () => setActiveTab("code"));
 async function initialize() {
   const response = await fetch("/api/clos");
   state.data = await response.json();
+  state.masteryByClo = loadMasteryProgress();
   sanitizeAllCodingExercises(state.data);
   renderAll();
   setActiveTab(null);
