@@ -1344,7 +1344,11 @@ submitCodeEl.addEventListener("click", async () => {
     }
 
     if (result.attempts >= 5 && state.revealedSolutions[exercise.id]) {
+      codeFeedbackEl
+        .querySelectorAll(".solution-loaded-note")
+        .forEach((element) => element.remove());
       const solutionNote = document.createElement("p");
+      solutionNote.className = "solution-loaded-note";
       solutionNote.style.margin = "4px 0 0";
       solutionNote.textContent = "Solution loaded in the code editor.";
       codeFeedbackEl.appendChild(solutionNote);
