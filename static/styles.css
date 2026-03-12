@@ -651,3 +651,94 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Confidence self-rating widget */
+.confidence-rating {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.confidence-label {
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.confidence-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.confidence-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 8px 6px;
+  cursor: pointer;
+  color: #334155;
+  font-size: 1.2rem;
+  transition: all 0.15s;
+}
+
+.confidence-btn:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.confidence-btn-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Progressive hint ladder */
+.hint-text {
+  margin: 8px 0 4px;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.hint-more-btn {
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  margin-bottom: 4px;
+}
+
+.hint-more-btn:hover {
+  color: #1d4ed8;
+}
+
+/* MCQ wrong answer breakdown */
+.mcq-wrong-choice {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  color: #991b1b;
+}
+
+.mcq-correct-choice {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: #166534;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dcfce7;
+}
+
+.mcq-explanation {
+  margin: 0;
+  font-size: 0.9rem;
+}

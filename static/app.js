@@ -8,6 +8,7 @@ const state = {
   codeProgressByClo: {},
   revealedSolutions: {},
   masteryByClo: {},
+  hintState: {},
 };
 
 const MASTERY_STORAGE_KEY = "apt_mastery_progress_v1";
@@ -41,6 +42,7 @@ const panelMcqEl = document.getElementById("panel-mcq");
 const panelCodeEl = document.getElementById("panel-code");
 
 const submitCodeEl = document.getElementById("submit-code");
+const confidenceContainerEl = document.getElementById("confidence-container");
 const insightMasteryEl = document.getElementById("insight-mastery");
 const insightStreakEl = document.getElementById("insight-streak");
 const insightNextReviewEl = document.getElementById("insight-next-review");
@@ -114,7 +116,7 @@ function getMasteryRecord(cloId) {
   return state.masteryByClo[cloId];
 }
 
-function updateMasteryAfterAttempt(cloId, success) {
+function updateMasteryAfterAttempt(cloId, success, confidence = 2) {
   const record = getMasteryRecord(cloId);
   record.attempts += 1;
   if (success) {
@@ -124,7 +126,8 @@ function updateMasteryAfterAttempt(cloId, success) {
     record.streak = 0;
   }
 
-  const masteryDelta = success ? 8 : -5;
+  const MASTERY_DELTAS = success ? [4, 7, 10] : [-2, -4, -8];
+  const masteryDelta = MASTERY_DELTAS[Math.min(Math.max(confidence - 1, 0), 2)];
   record.masteryScore = Math.min(
     100,
     Math.max(0, record.masteryScore + masteryDelta),
@@ -157,6 +160,84 @@ function renderLearningInsights() {
   insightMasteryEl.textContent = `${record.masteryScore}%`;
   insightStreakEl.textContent = String(record.streak);
   insightNextReviewEl.textContent = formatDateLabel(record.nextReviewDate);
+}
+
+function renderConfidenceRating(anchorEl, cloId, success, onRated) {
+  const existing = anchorEl.querySelector(".confidence-rating");
+  if (existing) {
+    existing.remove();
+  }
+
+  const wrap = document.createElement("div");
+  wrap.className = "confidence-rating";
+
+  const label = document.createElement("p");
+  label.className = "confidence-label";
+  label.textContent = "How confident did you feel?";
+  wrap.appendChild(label);
+
+  const buttons = document.createElement("div");
+  buttons.className = "confidence-buttons";
+
+  [
+    ["\u{1F615}", "Guessed", 1],
+    ["\u{1F914}", "Uncertain", 2],
+    ["\u{1F60A}", "Confident", 3],
+  ].forEach(([emoji, text, level]) => {
+    const btn = document.createElement("button");
+    btn.className = "confidence-btn";
+    const emojiSpan = document.createElement("span");
+    emojiSpan.textContent = emoji;
+    const labelSpan = document.createElement("span");
+    labelSpan.className = "confidence-btn-label";
+    labelSpan.textContent = text;
+    btn.appendChild(emojiSpan);
+    btn.appendChild(labelSpan);
+    btn.onclick = () => {
+      updateMasteryAfterAttempt(cloId, success, level);
+      wrap.remove();
+      if (onRated) {
+        onRated();
+      }
+    };
+    buttons.appendChild(btn);
+  });
+
+  wrap.appendChild(buttons);
+  anchorEl.appendChild(wrap);
+}
+
+function buildHintLadder(container, hint) {
+  if (!hint) {
+    return;
+  }
+
+  const rawSentences = hint.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+  const sentences = rawSentences.length > 0 ? rawSentences : [hint];
+  let revealed = 1;
+
+  const hintText = document.createElement("p");
+  hintText.className = "hint-text";
+
+  const showMoreBtn = document.createElement("button");
+  showMoreBtn.className = "hint-more-btn";
+  showMoreBtn.textContent = "Show more hint";
+
+  function updateDisplay() {
+    hintText.textContent = `Hint: ${sentences.slice(0, revealed).join(" ")}`;
+    showMoreBtn.style.display = revealed >= sentences.length ? "none" : "inline-block";
+  }
+
+  showMoreBtn.onclick = () => {
+    revealed = Math.min(revealed + 1, sentences.length);
+    updateDisplay();
+  };
+
+  updateDisplay();
+  container.appendChild(hintText);
+  if (sentences.length > 1) {
+    container.appendChild(showMoreBtn);
+  }
 }
 
 function escapeHtml(value) {
@@ -819,15 +900,34 @@ function renderMcq() {
     });
 
     const result = await response.json();
+    feedback.innerHTML = "";
     feedback.style.display = "block";
     feedback.className = `feedback ${result.correct ? "success" : "error"}`;
-    feedback.textContent = `${result.message} ${result.explanation}`;
-    updateMasteryAfterAttempt(clo.id, result.correct);
+
+    if (!result.correct && result.selected_option_text) {
+      const wrongLine = document.createElement("p");
+      wrongLine.className = "mcq-wrong-choice";
+      wrongLine.textContent = `You chose: ${result.selected_option_text}`;
+      feedback.appendChild(wrongLine);
+
+      const correctLine = document.createElement("p");
+      correctLine.className = "mcq-correct-choice";
+      correctLine.textContent = `Correct answer: ${result.correct_option_text}`;
+      feedback.appendChild(correctLine);
+    }
+
+    const msgLine = document.createElement("p");
+    msgLine.className = "mcq-explanation";
+    msgLine.textContent = `${result.message} ${result.explanation}`;
+    feedback.appendChild(msgLine);
+
     submitBtn.disabled = true;
     card.querySelectorAll(`input[name="${question.id}"]`).forEach((input) => {
       input.disabled = true;
     });
-    nextBtn.style.display = "inline-block";
+    renderConfidenceRating(card, clo.id, result.correct, () => {
+      nextBtn.style.display = "inline-block";
+    });
   };
 
   nextBtn.onclick = () => {
@@ -1058,6 +1158,7 @@ function renderExercises() {
     codeFeedbackEl.className = "feedback";
     codeFeedbackEl.textContent =
       "Please check back later for more practice tasks.";
+    confidenceContainerEl.innerHTML = "";
     nextCodeEl.style.display = "none";
     codeSolutionEl.style.display = "none";
     codeSolutionEl.textContent = "";
@@ -1091,6 +1192,7 @@ function renderExercises() {
   codeFeedbackEl.className = "feedback";
   codeFeedbackEl.textContent =
     "Submit your code to receive guided feedback and hints.";
+  confidenceContainerEl.innerHTML = "";
   nextCodeEl.style.display = "none";
   codeSolutionEl.style.display = "none";
   codeSolutionEl.textContent = "";
@@ -1170,16 +1272,24 @@ submitCodeEl.addEventListener("click", async () => {
   const success = result.passed;
 
   codeFeedbackEl.className = `feedback ${success ? "success" : "error"}`;
+  codeFeedbackEl.innerHTML = "";
+  confidenceContainerEl.innerHTML = "";
+
+  const msgEl = document.createElement("p");
+  msgEl.style.margin = "0 0 4px";
+  msgEl.textContent = success
+    ? `${result.message} Attempts: ${result.attempts}.`
+    : result.message;
+  codeFeedbackEl.appendChild(msgEl);
 
   if (success) {
-    codeFeedbackEl.textContent = `${result.message} Attempts: ${result.attempts}.`;
-    updateMasteryAfterAttempt(clo.id, true);
-    nextCodeEl.style.display = "inline-block";
     codeSolutionEl.style.display = "none";
     codeSolutionEl.textContent = "";
+    renderConfidenceRating(confidenceContainerEl, clo.id, true, () => {
+      nextCodeEl.style.display = "inline-block";
+    });
   } else {
-    codeFeedbackEl.textContent = `${result.message} Hint: ${result.hint} (Attempt ${result.attempts})`;
-    updateMasteryAfterAttempt(clo.id, false);
+    buildHintLadder(codeFeedbackEl, result.hint);
     nextCodeEl.style.display = "none";
 
     if (result.attempts >= 5) {
@@ -1197,14 +1307,14 @@ submitCodeEl.addEventListener("click", async () => {
       }
     }
 
-    if (result.attempts >= 5 && !state.revealedSolutions[exercise.id]) {
-      codeSolutionEl.style.display = "none";
-      codeSolutionEl.textContent = "";
+    if (result.attempts >= 5 && state.revealedSolutions[exercise.id]) {
+      const solutionNote = document.createElement("p");
+      solutionNote.style.margin = "4px 0 0";
+      solutionNote.textContent = "Solution loaded in the code editor.";
+      codeFeedbackEl.appendChild(solutionNote);
     }
 
-    if (result.attempts >= 5 && state.revealedSolutions[exercise.id]) {
-      codeFeedbackEl.textContent = `${result.message} Hint: ${result.hint} (Attempt ${result.attempts}) Solution loaded in the code editor.`;
-    }
+    renderConfidenceRating(confidenceContainerEl, clo.id, false, null);
   }
 });
 

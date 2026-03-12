@@ -280,11 +280,20 @@ def assess_mcq() -> Any:
     is_correct = selected_index == question["answer_index"]
     message = "Correct. Great work!" if is_correct else "Not quite. Try reviewing the concept summary and attempt again."
 
+    selected_option_text = (
+        question["options"][selected_index]
+        if isinstance(selected_index, int) and 0 <= selected_index < len(question["options"])
+        else ""
+    )
+    correct_option_text = question["options"][question["answer_index"]]
+
     return jsonify(
         {
             "correct": is_correct,
             "message": message,
             "explanation": question["explanation"],
+            "selected_option_text": selected_option_text,
+            "correct_option_text": correct_option_text,
         }
     )
 
