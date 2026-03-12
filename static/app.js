@@ -927,6 +927,13 @@ function renderMcq() {
         revealAnswerBtn.onclick = () => {
           correctLine.style.display = "block";
           revealAnswerBtn.remove();
+          submitBtn.disabled = true;
+          card
+            .querySelectorAll(`input[name="${question.id}"]`)
+            .forEach((input) => {
+              input.disabled = true;
+            });
+          nextBtn.style.display = "inline-block";
         };
 
         feedback.appendChild(revealAnswerBtn);
