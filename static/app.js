@@ -6,6 +6,7 @@ const state = {
   activeAssessmentTab: null,
   mcqProgressByClo: {},
   codeProgressByClo: {},
+  analysisProgressByClo: {},
   revealedSolutions: {},
   masteryByClo: {},
   hintState: {},
@@ -33,19 +34,34 @@ const codeFeedbackEl = document.getElementById("code-feedback");
 const nextCodeEl = document.getElementById("next-code");
 const codeSolutionEl = document.getElementById("code-solution");
 const answerModalEl = document.getElementById("answer-modal");
+const answerModalTitleEl = document.getElementById("answer-modal-title");
+const answerModalMessageEl = document.getElementById("answer-modal-message");
 const modalYesEl = document.getElementById("modal-yes");
 const modalNoEl = document.getElementById("modal-no");
 
 const tabMcqEl = document.getElementById("tab-mcq");
 const tabCodeEl = document.getElementById("tab-code");
+const tabAnalysisEl = document.getElementById("tab-analysis");
 const panelMcqEl = document.getElementById("panel-mcq");
 const panelCodeEl = document.getElementById("panel-code");
+const panelAnalysisEl = document.getElementById("panel-analysis");
 
 const submitCodeEl = document.getElementById("submit-code");
 const confidenceContainerEl = document.getElementById("confidence-container");
 const insightMasteryEl = document.getElementById("insight-mastery");
 const insightStreakEl = document.getElementById("insight-streak");
 const insightNextReviewEl = document.getElementById("insight-next-review");
+
+const analysisTitleEl = document.getElementById("analysis-title");
+const analysisPromptEl = document.getElementById("analysis-prompt");
+const analysisSnippetEl = document.getElementById("analysis-snippet");
+const analysisAnswerEl = document.getElementById("analysis-answer");
+const submitAnalysisEl = document.getElementById("submit-analysis");
+const nextAnalysisEl = document.getElementById("next-analysis");
+const analysisFeedbackEl = document.getElementById("analysis-feedback");
+const analysisConfidenceContainerEl = document.getElementById(
+  "analysis-confidence-container",
+);
 
 function toStartOfDay(date = new Date()) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -583,13 +599,19 @@ function setActiveTab(tab) {
   state.activeAssessmentTab = tab;
   const isMcq = tab === "mcq";
   const isCode = tab === "code";
+  const isAnalysis = tab === "analysis";
   tabMcqEl.classList.toggle("active", isMcq);
   tabCodeEl.classList.toggle("active", isCode);
+  tabAnalysisEl.classList.toggle("active", isAnalysis);
   panelMcqEl.classList.toggle("active", isMcq);
   panelCodeEl.classList.toggle("active", isCode);
+  panelAnalysisEl.classList.toggle("active", isAnalysis);
 
   if (isMcq) {
     renderMcq();
+  }
+  if (isAnalysis) {
+    renderCodingAnalysis();
   }
 }
 
@@ -986,6 +1008,52 @@ function getCurrentCodeProgress() {
   return state.codeProgressByClo[clo.id];
 }
 
+function getCurrentAnalysisProgress() {
+  const clo = getSelectedClo();
+  if (!state.analysisProgressByClo[clo.id]) {
+    state.analysisProgressByClo[clo.id] = {
+      currentQuestionId: null,
+      usedQuestionIds: [],
+      nextDifficultyIndex: 0,
+    };
+  }
+  return state.analysisProgressByClo[clo.id];
+}
+
+function pickNextAnalysisForClo(clo, progress) {
+  if (!clo.coding_analysis || clo.coding_analysis.length === 0) {
+    return null;
+  }
+
+  const DIFFICULTY_ORDER = ["easy", "medium", "hard"];
+
+  const remaining = clo.coding_analysis.filter(
+    (question) => !progress.usedQuestionIds.includes(question.id),
+  );
+
+  if (remaining.length === 0) {
+    progress.usedQuestionIds = [];
+    progress.nextDifficultyIndex = 0;
+    return clo.coding_analysis[
+      Math.floor(Math.random() * clo.coding_analysis.length)
+    ];
+  }
+
+  const targetDifficulty =
+    DIFFICULTY_ORDER[progress.nextDifficultyIndex % DIFFICULTY_ORDER.length];
+  const sameDifficulty = remaining.filter(
+    (question) => (question.difficulty || "easy") === targetDifficulty,
+  );
+
+  const candidates = sameDifficulty.length > 0 ? sameDifficulty : remaining;
+  const nextQuestion =
+    candidates[Math.floor(Math.random() * candidates.length)];
+  progress.nextDifficultyIndex =
+    (progress.nextDifficultyIndex + 1) % DIFFICULTY_ORDER.length;
+
+  return nextQuestion;
+}
+
 function pickNextExerciseForClo(clo, progress) {
   if (!clo.coding_exercises || clo.coding_exercises.length === 0) {
     return null;
@@ -1252,8 +1320,12 @@ function showSolution(exercise) {
   codeSolutionEl.textContent = `Suggested solution:\n\n${solutionCode}`;
 }
 
-function askToShowSolution() {
+function askToShowSolution(title, message) {
   return new Promise((resolve) => {
+    answerModalTitleEl.textContent = title || "Need the answer?";
+    answerModalMessageEl.textContent =
+      message ||
+      "You have attempted this coding exercise 5 times. Do you want to see the solution now?";
     answerModalEl.style.display = "flex";
 
     const onYes = () => {
@@ -1275,6 +1347,38 @@ function askToShowSolution() {
     modalYesEl.addEventListener("click", onYes);
     modalNoEl.addEventListener("click", onNo);
   });
+}
+
+async function revealCodingAnalysisAnswer(cloId, questionId) {
+  const response = await fetch("/api/assess/code-analysis/reveal", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Session-Id": state.sessionId,
+    },
+    body: JSON.stringify({
+      clo_id: cloId,
+      question_id: questionId,
+    }),
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    return null;
+  }
+
+  return result.answer || null;
+}
+
+function showCodingAnalysisAnswer(answerText) {
+  analysisFeedbackEl
+    .querySelectorAll(".analysis-answer-reveal")
+    .forEach((element) => element.remove());
+
+  const reveal = document.createElement("pre");
+  reveal.className = "analysis-answer-reveal";
+  reveal.textContent = `Expected output:\n${answerText}`;
+  analysisFeedbackEl.appendChild(reveal);
 }
 
 submitCodeEl.addEventListener("click", async () => {
@@ -1331,7 +1435,10 @@ submitCodeEl.addEventListener("click", async () => {
     if (result.attempts >= 5) {
       const alreadyRevealed = state.revealedSolutions[exercise.id] === true;
       if (!alreadyRevealed) {
-        const wantsSolution = await askToShowSolution();
+        const wantsSolution = await askToShowSolution(
+          "Need the answer?",
+          "You have attempted this coding exercise 5 times. Do you want to see the solution now?",
+        );
         if (wantsSolution) {
           state.revealedSolutions[exercise.id] = true;
           showSolution(exercise);
@@ -1373,6 +1480,171 @@ nextCodeEl.addEventListener("click", () => {
   renderExercises();
 });
 
+function renderCodingAnalysis() {
+  const clo = getSelectedClo();
+  const questions = clo.coding_analysis || [];
+
+  if (!questions.length) {
+    analysisTitleEl.textContent = "Coding Analysis";
+    analysisPromptEl.textContent =
+      "No coding analysis questions available for this CLO yet.";
+    analysisSnippetEl.textContent = "";
+    analysisAnswerEl.value = "";
+    analysisFeedbackEl.className = "feedback";
+    analysisFeedbackEl.textContent = "Please check back later for more tasks.";
+    analysisConfidenceContainerEl.innerHTML = "";
+    nextAnalysisEl.style.display = "none";
+    return;
+  }
+
+  const progress = getCurrentAnalysisProgress();
+  let question = questions.find(
+    (item) => item.id === progress.currentQuestionId,
+  );
+  if (!question) {
+    question = pickNextAnalysisForClo(clo, progress);
+    progress.currentQuestionId = question?.id ?? null;
+  }
+
+  if (!question) {
+    return;
+  }
+
+  const difficultyLabel = (question.difficulty || "easy").toUpperCase();
+  analysisTitleEl.textContent = `${question.title} [${difficultyLabel}] (${progress.usedQuestionIds.length + 1} of ${questions.length})`;
+  analysisPromptEl.textContent = question.prompt;
+  analysisSnippetEl.textContent = question.snippet;
+  analysisAnswerEl.value = "";
+  analysisAnswerEl.readOnly = false;
+  submitAnalysisEl.disabled = false;
+  analysisFeedbackEl.className = "feedback";
+  analysisFeedbackEl.textContent =
+    "Read the code, then write what you expect the output to be.";
+  analysisConfidenceContainerEl.innerHTML = "";
+  nextAnalysisEl.style.display = "none";
+}
+
+submitAnalysisEl.addEventListener("click", async () => {
+  const clo = getSelectedClo();
+  const progress = getCurrentAnalysisProgress();
+  const question = (clo.coding_analysis || []).find(
+    (item) => item.id === progress.currentQuestionId,
+  );
+
+  if (!question) {
+    analysisFeedbackEl.className = "feedback error";
+    analysisFeedbackEl.textContent =
+      "No active coding analysis question found. Please try Next Question.";
+    return;
+  }
+
+  if (!analysisAnswerEl.value.trim()) {
+    analysisFeedbackEl.className = "feedback error";
+    analysisFeedbackEl.textContent = "Please enter your expected output.";
+    return;
+  }
+
+  const response = await fetch("/api/assess/code-analysis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Session-Id": state.sessionId,
+    },
+    body: JSON.stringify({
+      clo_id: clo.id,
+      question_id: question.id,
+      answer: analysisAnswerEl.value,
+    }),
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    analysisFeedbackEl.className = "feedback error";
+    analysisFeedbackEl.textContent =
+      result.error || "Could not evaluate your answer right now.";
+    return;
+  }
+
+  const success = result.correct;
+  analysisFeedbackEl.className = `feedback ${success ? "success" : "error"}`;
+  analysisFeedbackEl.innerHTML = "";
+  analysisConfidenceContainerEl.innerHTML = "";
+
+  const messageEl = document.createElement("p");
+  messageEl.style.margin = "0";
+  messageEl.textContent = success
+    ? `${result.message} Attempts: ${result.attempts}.`
+    : result.message;
+  analysisFeedbackEl.appendChild(messageEl);
+
+  if (!success) {
+    buildHintLadder(analysisFeedbackEl, result.hint);
+    nextAnalysisEl.style.display = "none";
+
+    if (result.attempts >= 5) {
+      const revealKey = `analysis:${question.id}`;
+      const alreadyRevealed = state.revealedSolutions[revealKey] === true;
+
+      if (!alreadyRevealed) {
+        const wantsAnswer = await askToShowSolution(
+          "Need the answer?",
+          "You have attempted this coding analysis question 5 times. Do you want to see the expected output now?",
+        );
+        if (wantsAnswer) {
+          const answerText = await revealCodingAnalysisAnswer(
+            clo.id,
+            question.id,
+          );
+          if (answerText) {
+            state.revealedSolutions[revealKey] = true;
+            showCodingAnalysisAnswer(answerText);
+            nextAnalysisEl.style.display = "inline-block";
+            analysisAnswerEl.readOnly = true;
+            submitAnalysisEl.disabled = true;
+          }
+        }
+      } else {
+        const answerText = await revealCodingAnalysisAnswer(
+          clo.id,
+          question.id,
+        );
+        if (answerText) {
+          showCodingAnalysisAnswer(answerText);
+          nextAnalysisEl.style.display = "inline-block";
+          analysisAnswerEl.readOnly = true;
+          submitAnalysisEl.disabled = true;
+        }
+      }
+    }
+
+    renderConfidenceRating(analysisConfidenceContainerEl, clo.id, false, null);
+    return;
+  }
+
+  nextAnalysisEl.style.display = "inline-block";
+  analysisAnswerEl.readOnly = true;
+  submitAnalysisEl.disabled = true;
+
+  renderConfidenceRating(analysisConfidenceContainerEl, clo.id, true, () => {
+    nextAnalysisEl.style.display = "inline-block";
+  });
+});
+
+nextAnalysisEl.addEventListener("click", () => {
+  const clo = getSelectedClo();
+  const progress = getCurrentAnalysisProgress();
+  if (
+    progress.currentQuestionId &&
+    !progress.usedQuestionIds.includes(progress.currentQuestionId)
+  ) {
+    progress.usedQuestionIds.push(progress.currentQuestionId);
+  }
+
+  const nextQuestion = pickNextAnalysisForClo(clo, progress);
+  progress.currentQuestionId = nextQuestion?.id ?? null;
+  renderCodingAnalysis();
+});
+
 function renderAll() {
   renderCloButtons();
   renderSlides();
@@ -1380,10 +1652,12 @@ function renderAll() {
   renderVideos();
   renderMcq();
   renderExercises();
+  renderCodingAnalysis();
 }
 
 tabMcqEl.addEventListener("click", () => setActiveTab("mcq"));
 tabCodeEl.addEventListener("click", () => setActiveTab("code"));
+tabAnalysisEl.addEventListener("click", () => setActiveTab("analysis"));
 
 async function initialize() {
   const response = await fetch("/api/clos");

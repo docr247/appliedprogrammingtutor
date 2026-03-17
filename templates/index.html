@@ -62,6 +62,7 @@
           <div class="tab-header">
             <button id="tab-mcq" class="tab">MCQ Assessment</button>
             <button id="tab-code" class="tab">Coding Exercise</button>
+            <button id="tab-analysis" class="tab">Coding Analysis</button>
           </div>
 
           <div id="panel-mcq" class="panel">
@@ -96,6 +97,29 @@
               class="code-solution"
               style="display: none"
             ></pre>
+          </div>
+
+          <div id="panel-analysis" class="panel">
+            <h3 id="analysis-title">Coding Analysis</h3>
+            <p id="analysis-prompt" class="exercise-prompt"></p>
+            <pre id="analysis-snippet" class="analysis-snippet"></pre>
+            <label for="analysis-answer" class="analysis-answer-label">
+              Write the expected output
+            </label>
+            <textarea
+              id="analysis-answer"
+              class="analysis-answer"
+              rows="4"
+              placeholder="Write your expected output here..."
+            ></textarea>
+            <button id="submit-analysis" class="primary">
+              Submit Analysis
+            </button>
+            <button id="next-analysis" class="secondary" style="display: none">
+              Next Question
+            </button>
+            <div id="analysis-feedback" class="feedback"></div>
+            <div id="analysis-confidence-container"></div>
           </div>
         </section>
 
@@ -136,8 +160,8 @@
 
     <div id="answer-modal" class="modal-overlay" style="display: none">
       <div class="modal-card">
-        <h3>Need the answer?</h3>
-        <p>
+        <h3 id="answer-modal-title">Need the answer?</h3>
+        <p id="answer-modal-message">
           You have attempted this coding exercise 5 times. Do you want to see
           the solution now?
         </p>

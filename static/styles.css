@@ -558,6 +558,61 @@ body {
   border-radius: 8px;
 }
 
+.analysis-snippet {
+  margin: 10px 0;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  background: #0f172a;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.analysis-answer-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.analysis-answer {
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  resize: vertical;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.analysis-answer:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: #2563eb;
+}
+
+.analysis-answer-reveal {
+  margin: 10px 0 0;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  padding: 10px;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88rem;
+  color: #0f172a;
+}
+
 .feedback {
   margin-top: 12px;
   border-radius: 10px;
